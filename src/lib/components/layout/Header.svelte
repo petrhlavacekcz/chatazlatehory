@@ -14,22 +14,15 @@
 		return current === target || current.startsWith(target + '/');
 	};
 
-	// Scroll-aware: transparent header se po scrollu (>80px) přepne na solid.
-	// Jen na Home, kde je transparent režim — ostatní stránky jsou solid vždy.
 	let scrolled = $state(false);
-
 	function onScroll() {
 		scrolled = window.scrollY > 80;
 	}
-
-	// Solid když: (non-home) NEBO (home a scrollované)
 	const solid = $derived(!transparent || scrolled);
 
 	const logoColor = $derived(solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]');
 	const subColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/55');
-	const navItemColor = $derived(
-		solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/85'
-	);
+	const navItemColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/85');
 	const navItemHover = $derived(
 		solid ? 'hover:text-[var(--color-foreground)]' : 'hover:text-[var(--color-dark-foreground)]'
 	);
@@ -43,18 +36,18 @@
 		solid ? 'sticky bg-[var(--color-background)]/95 shadow-[0_1px_0_var(--color-border)] backdrop-blur-md' : 'absolute'
 	)}
 >
-	<div class="mx-auto grid h-20 max-w-7xl grid-cols-3 items-center px-[var(--spacing-container)]">
-		<!-- Logo (left) -->
-		<a href="/" class="flex flex-col leading-none">
-			<span class={cn('font-serif text-lg font-light tracking-tight transition-colors', logoColor)}>
+	<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-[var(--spacing-container)]">
+		<!-- Logo (left) — single line na mobile i desktop -->
+		<a href="/" class="flex items-baseline gap-2 leading-none">
+			<span class={cn('font-serif text-base font-light tracking-tight transition-colors sm:text-lg', logoColor)}>
 				{cabin.name}
 			</span>
-			<span class={cn('label !text-[0.6rem] !tracking-[0.2em] mt-0.5', subColor)}>
+			<span class={cn('label hidden !text-[0.6rem] !tracking-[0.2em] sm:inline', subColor)}>
 				{cabin.area}
 			</span>
 		</a>
 
-		<!-- Center nav (desktop) -->
+		<!-- Center nav (desktop only) -->
 		<nav class="hidden items-center justify-center gap-10 lg:flex" aria-label="Hlavní navigace">
 			{#each navItems as item (item.href)}
 				<a
@@ -69,19 +62,17 @@
 			{/each}
 		</nav>
 
-		<!-- CTA (right, desktop) -->
-		<div class="hidden justify-end md:flex">
-			<a
-				href="/rezervace/"
-				class="rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-sans text-sm font-medium text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)]"
-			>
-				Rezervovat
-			</a>
-		</div>
+		<!-- CTA (desktop only) -->
+		<a
+			href="/rezervace/"
+			class="hidden rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-sans text-sm font-medium text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)] md:inline-flex"
+		>
+			Rezervovat
+		</a>
 
 		<!-- Mobile toggle (right) -->
 		<button
-			class={cn('col-start-3 inline-flex h-10 w-10 justify-self-end items-center justify-center md:hidden', logoColor)}
+			class={cn('inline-flex h-10 w-10 items-center justify-center md:hidden', logoColor)}
 			onclick={() => (mobileOpen = !mobileOpen)}
 			aria-label={mobileOpen ? 'Zavřít menu' : 'Otevřít menu'}
 			aria-expanded={mobileOpen}

@@ -9,7 +9,7 @@
 	<meta name="description" content={`Co dělat v okolí ${cabin.location.city} — turistika, lyžování, cyklotrasy a památky v Jeseníkách.`} />
 </svelte:head>
 
-<section class="border-b border-[var(--color-border)] bg-[var(--color-background)] pt-12 pb-16 md:pb-20">
+<section class="border-b border-[var(--color-border)] bg-[var(--color-background)] pb-16 md:pb-20">
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
 		<p class="label text-[var(--color-accent-text)]">Okolí</p>
 		<h1 class="mt-5 max-w-3xl font-serif font-light leading-[1.08] text-[var(--color-foreground)]" style="font-size: clamp(2.25rem, 6vw, 3.75rem);">

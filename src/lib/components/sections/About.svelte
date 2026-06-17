@@ -13,7 +13,7 @@
 -->
 <section class="bg-[var(--color-background)] py-[var(--spacing-section)]">
 	<div class="mx-auto max-w-7xl px-[var(--spacing-container)]">
-		<div class="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+		<div class="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
 			<!-- Text -->
 			<div class="order-1">
 				<p class="label text-[var(--color-accent-text)]">{cabin.area}</p>
@@ -46,7 +46,7 @@
 						class="aspect-[4/5] w-full object-cover"
 					/>
 				</div>
-				<div class="absolute -bottom-8 -left-4 rounded-[var(--radius-md)] bg-[var(--color-dark)] px-8 py-6 shadow-[var(--shadow-hover)] sm:-left-8 lg:-left-12">
+				<div class="absolute -bottom-8 left-4 rounded-[var(--radius-md)] bg-[var(--color-dark)] px-7 py-5 shadow-[var(--shadow-hover)] sm:left-8 sm:px-8 sm:py-6 lg:-left-12">
 					<p class="font-serif text-5xl font-light text-[var(--color-accent)]">{cabin.capacity.guests}</p>
 					<p class="label mt-2 text-[var(--color-dark-foreground)]/65">hostů kapacita</p>
 				</div>

@@ -22,13 +22,13 @@
 		</div>
 
 		<!-- Editorial: velká fotka vlevo, 2x2 grid vpravo -->
-		<div class="grid gap-4 lg:grid-cols-2">
+		<div class="grid gap-4 md:grid-cols-2">
 			<a href="/galerie/" class="group relative overflow-hidden rounded-[var(--radius-lg)]">
 				<img
 					src={galleryPreview[0].src}
 					alt={galleryPreview[0].alt}
 					loading="eager"
-					class="aspect-[4/3] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105 lg:aspect-[4/5]"
+					class="aspect-[4/3] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105 md:aspect-[4/5]"
 				/>
 			</a>
 			<div class="grid grid-cols-2 gap-4">

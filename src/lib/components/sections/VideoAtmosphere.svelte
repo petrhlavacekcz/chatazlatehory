@@ -7,9 +7,9 @@
 	Jeden tracked label + jeden krátký light serif řádek, vlevo dole.
 	Žádný subheadline, žádný popis — ať video dýchá.
 -->
-<section class="relative flex min-h-[85svh] items-end overflow-hidden bg-[var(--color-dark-deep)]">
+<section class="relative flex min-h-[60svh] items-end overflow-hidden bg-[var(--color-dark-deep)] md:min-h-[85svh]">
 	<video
-		class="absolute inset-0 h-full w-full object-cover"
+		class="absolute inset-0 h-full w-full object-cover object-center"
 		poster="/img/gallery/1.avif"
 		autoplay
 		muted

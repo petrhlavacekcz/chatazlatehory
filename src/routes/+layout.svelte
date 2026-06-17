@@ -42,7 +42,7 @@
 
 <div class="flex min-h-dvh flex-col">
 	<Header bind:mobileOpen transparent={isHome} />
-	<main class="flex-1" class:!pt-20={!isHome}>
+	<main class="flex-1 pt-20" class:pt-0={isHome}>
 		{@render children()}
 	</main>
 	<Footer />

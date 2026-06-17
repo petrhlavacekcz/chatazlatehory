@@ -30,7 +30,7 @@
 	<meta name="description" content="Fotogalerie chaty — exteriér, interiér, areál i okolní krajina Jeseníků." />
 </svelte:head>
 
-<section class="border-b border-[var(--color-border)] bg-[var(--color-background)] pt-12 pb-16 md:pb-20">
+<section class="border-b border-[var(--color-border)] bg-[var(--color-background)] pb-16 md:pb-20">
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
 		<p class="label text-[var(--color-accent-text)]">Galerie</p>
 		<h1 class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]" style="font-size: clamp(2.25rem, 6vw, 3.75rem);">
