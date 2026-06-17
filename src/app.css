@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/hanken-grotesk';
+@import '@fontsource/spectral';
+
+/*
+ * Design tokeny — „Warm Lodge Luxury" v2
+ * Inspirováno Trexon luxury resort: light serif display + tracked sans labels + split sekce.
+ * Teplý krém, hluboká espresso, zlato. Jediný zdroj pravdy pro vizuální systém.
+ */
+
+@theme {
+	/* ── Fonts ──────────────────────────────────────────────── */
+	/* Spectral: light serif pro display (elegance). Hanken: sans pro vše ostatní. */
+	--font-serif: 'Spectral', Georgia, 'Times New Roman', serif;
+	--font-sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, sans-serif;
+
+	/* ── Colors (OKLCH) ─────────────────────────────────────── */
+	/* Accent — Gold */
+	--color-accent: oklch(0.72 0.12 75);
+	--color-accent-hover: oklch(0.66 0.14 75);
+	--color-accent-soft: oklch(0.82 0.08 75);
+	--color-accent-foreground: oklch(0.16 0.01 60);
+
+	/* Dark — Espresso */
+	--color-dark: oklch(0.18 0.015 55);
+	--color-dark-deep: oklch(0.1 0.01 55);
+	--color-dark-foreground: oklch(0.92 0.015 75);
+
+	/* Neutrals — Warm Lodge (WCAG AA: muted ≥4.5:1 vs background) */
+	--color-background: oklch(0.92 0.012 75);
+	--color-surface: oklch(0.96 0.008 75);
+	--color-foreground: oklch(0.22 0.015 55);
+	--color-muted: oklch(0.28 0.02 55);
+	--color-muted-foreground: oklch(0.28 0.02 55);
+	--color-border: oklch(0.8 0.012 65);
+	--color-input: oklch(0.8 0.012 65);
+	--color-ring: oklch(0.72 0.12 75);
+
+	/* Accent pro TEXT na light bg — výrazně tmavší než gold fill pro WCAG AA.
+	   Gold fill (--color-accent) zůstává sytě zlatý pro CTA buttons (tam je text tmavý).
+	   Label text (uppercase, bold-ish) splňuje large-text limit ≥3:1. */
+	--color-accent-text: oklch(0.4 0.09 65);
+
+	/* Aliasy */
+	--color-primary: oklch(0.72 0.12 75);
+	--color-primary-hover: oklch(0.66 0.14 75);
+	--color-primary-foreground: oklch(0.16 0.01 60);
+
+	/* ── Radius ─────────────────────────────────────────────── */
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 14px;
+	--radius-full: 9999px;
+
+	/* ── Spacing ────────────────────────────────────────────── */
+	--spacing-section: clamp(5rem, 12vw, 10rem);
+	--spacing-container: clamp(1.5rem, 6vw, 6rem);
+
+	/* ── Motion ─────────────────────────────────────────────── */
+	--ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--duration-fast: 200ms;
+	--duration-base: 500ms;
+	--duration-slow: 900ms;
+
+	/* ── Shadows ────────────────────────────────────────────── */
+	--shadow-soft: 0 2px 20px oklch(0.18 0.015 55 / 0.06);
+	--shadow-hover: 0 12px 40px oklch(0.18 0.015 55 / 0.12);
+	--shadow-focus: 0 0 0 3px oklch(0.72 0.12 75 / 0.35);
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+		font-family: var(--font-sans);
+		font-weight: 400;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
+
+	/* Serif display — light weight, elegance */
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-serif);
+		font-weight: 300;
+		text-wrap: balance;
+		letter-spacing: -0.015em;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+
+	/* Tracked uppercase label utility (POV brand hlas, ne AI slop) */
+	.label {
+		font-family: var(--font-sans);
+		font-size: 0.7rem;
+		font-weight: 500;
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+	}
+
+	:focus-visible {
+		outline: none;
+		box-shadow: var(--shadow-focus);
+		border-radius: var(--radius-sm);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}
