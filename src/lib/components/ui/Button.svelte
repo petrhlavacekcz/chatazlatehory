@@ -11,14 +11,7 @@
 		children: Snippet;
 	} & (HTMLButtonAttributes | HTMLAnchorAttributes);
 
-	let {
-		variant = 'primary',
-		size = 'md',
-		href,
-		class: klass,
-		children,
-		...rest
-	}: Props = $props();
+	let { variant = 'primary', size = 'md', href, class: klass, children, ...rest }: Props = $props();
 
 	// DESIGN.md: single solid barva (gradient text = ban). Ghost-card pattern (border + široký shadow) = ban.
 	// Hover lift ≤8px blur. Focus ring v brand accent.
@@ -33,8 +26,7 @@
 		accent:
 			'bg-accent text-accent-foreground rounded-full hover:bg-[var(--color-accent-hover)] hover:shadow-[var(--shadow-hover)]',
 		// Ghost — jen text, podtržení na hover
-		ghost:
-			'text-foreground hover:text-primary underline-offset-4 hover:underline',
+		ghost: 'text-foreground hover:text-primary underline-offset-4 hover:underline',
 		// Outline — hairline border, ink text
 		outline:
 			'rounded-full border border-border text-foreground hover:border-primary hover:text-primary'

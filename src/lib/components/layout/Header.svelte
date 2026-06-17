@@ -5,7 +5,10 @@
 	import { cn } from '$lib/utils/cn';
 	import Icon from '@iconify/svelte';
 
-	let { mobileOpen = $bindable(false), transparent = false }: { mobileOpen?: boolean; transparent?: boolean } = $props();
+	let {
+		mobileOpen = $bindable(false),
+		transparent = false
+	}: { mobileOpen?: boolean; transparent?: boolean } = $props();
 
 	const isActive = (href: string) => {
 		const current = page.url.pathname.replace(/\/$/, '');
@@ -24,13 +27,21 @@
 
 	const solid = $derived(!transparent || scrolled);
 
-	const logoColor = $derived(solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]');
-	const subColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/55');
-	const navItemColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/90');
+	const logoColor = $derived(
+		solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]'
+	);
+	const subColor = $derived(
+		solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/55'
+	);
+	const navItemColor = $derived(
+		solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/90'
+	);
 	const navItemHover = $derived(
 		solid ? 'hover:text-[var(--color-foreground)]' : 'hover:text-[var(--color-dark-foreground)]'
 	);
-	const toggleColor = $derived(solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]');
+	const toggleColor = $derived(
+		solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]'
+	);
 
 	// Lock scroll when mobile menu open
 	$effect(() => {
@@ -54,13 +65,11 @@
 				: 'absolute'
 	)}
 >
-	<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-[var(--spacing-container)]">
+	<div
+		class="mx-auto flex h-20 max-w-7xl items-center justify-between px-[var(--spacing-container)]"
+	>
 		<!-- Logo (left) — single line -->
-		<a
-			href="/"
-			class="flex items-baseline gap-2 leading-none"
-			aria-label="{cabin.name} — domů"
-		>
+		<a href="/" class="flex items-baseline gap-2 leading-none" aria-label="{cabin.name} — domů">
 			<span
 				class={cn(
 					'font-serif text-base font-light tracking-tight transition-colors sm:text-lg',
@@ -137,7 +146,9 @@
 		aria-label="Menu"
 	>
 		<!-- Pozadí s jemnou fotkou pro atmosféru (optional, velmi potlačené) -->
-		<div class="absolute inset-0 bg-gradient-to-br from-[var(--color-dark)] via-[var(--color-dark-deep)] to-black"></div>
+		<div
+			class="absolute inset-0 bg-gradient-to-br from-[var(--color-dark)] via-[var(--color-dark-deep)] to-black"
+		></div>
 
 		<!-- Obsah menu -->
 		<div class="relative flex h-full flex-col px-[var(--spacing-container)] pb-12 pt-24">
@@ -161,10 +172,14 @@
 								style="font-size: clamp(2rem, 11vw, 3.5rem);"
 							>
 								<!-- Číslo položky — tracked, jemné, accent -->
-								<span class="font-sans text-xs font-medium tracking-[0.2em] text-[var(--color-accent)]/60 mt-2">
+								<span
+									class="font-sans text-xs font-medium tracking-[0.2em] text-[var(--color-accent)]/60 mt-2"
+								>
 									0{i + 1}
 								</span>
-								<span class="transition-transform duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:translate-x-2">
+								<span
+									class="transition-transform duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:translate-x-2"
+								>
 									{item.label}
 								</span>
 							</a>

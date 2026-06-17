@@ -15,10 +15,15 @@
 
 	<div class="relative mx-auto max-w-4xl px-[var(--spacing-container)] py-28 text-center md:py-40">
 		<p class="label text-[var(--color-accent)]">Vaše úniková chata</p>
-		<h2 class="mx-auto mt-7 max-w-2xl font-serif font-light leading-[1.05] text-[var(--color-dark-foreground)]" style="font-size: clamp(2.5rem, 6vw, 4.5rem);">
+		<h2
+			class="mx-auto mt-7 max-w-2xl font-serif font-light leading-[1.05] text-[var(--color-dark-foreground)]"
+			style="font-size: clamp(2.5rem, 6vw, 4.5rem);"
+		>
 			Přijďte si odpočinout
 		</h2>
-		<p class="mx-auto mt-7 max-w-xl font-sans text-base leading-relaxed text-[var(--color-dark-foreground)]/70 md:text-lg">
+		<p
+			class="mx-auto mt-7 max-w-xl font-sans text-base leading-relaxed text-[var(--color-dark-foreground)]/70 md:text-lg"
+		>
 			{cabin.location.city}, {cabin.location.region}. Napište nám a my se ozveme s volnými termíny.
 		</p>
 		<div class="mt-10">

@@ -17,10 +17,15 @@
 			<!-- Text -->
 			<div class="order-1">
 				<p class="label text-[var(--color-accent-text)]">{cabin.area}</p>
-				<h2 class="mt-7 font-serif font-light leading-[1.05] text-[var(--color-foreground)]" style="font-size: clamp(2.25rem, 5vw, 3.75rem);">
+				<h2
+					class="mt-7 font-serif font-light leading-[1.05] text-[var(--color-foreground)]"
+					style="font-size: clamp(2.25rem, 5vw, 3.75rem);"
+				>
 					Místo, kde se<br />zastaví čas
 				</h2>
-				<div class="mt-8 max-w-md space-y-5 font-sans text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
+				<div
+					class="mt-8 max-w-md space-y-5 font-sans text-base leading-relaxed text-[var(--color-muted)] md:text-lg"
+				>
 					{#each cabin.about as paragraph (paragraph)}
 						<p>{paragraph}</p>
 					{/each}
@@ -31,7 +36,9 @@
 						class="group inline-flex items-center gap-3 font-sans text-sm font-medium uppercase tracking-[0.15em] text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent)]"
 					>
 						Více o chatě
-						<span class="inline-block h-px w-10 bg-current transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:w-16"></span>
+						<span
+							class="inline-block h-px w-10 bg-current transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:w-16"
+						></span>
 					</a>
 				</div>
 			</div>
@@ -46,8 +53,12 @@
 						class="aspect-[4/5] w-full object-cover"
 					/>
 				</div>
-				<div class="absolute -bottom-8 left-4 rounded-[var(--radius-md)] bg-[var(--color-dark)] px-7 py-5 shadow-[var(--shadow-hover)] sm:left-8 sm:px-8 sm:py-6 lg:-left-12">
-					<p class="font-serif text-5xl font-light text-[var(--color-accent)]">{cabin.capacity.guests}</p>
+				<div
+					class="absolute -bottom-8 left-4 rounded-[var(--radius-md)] bg-[var(--color-dark)] px-7 py-5 shadow-[var(--shadow-hover)] sm:left-8 sm:px-8 sm:py-6 lg:-left-12"
+				>
+					<p class="font-serif text-5xl font-light text-[var(--color-accent)]">
+						{cabin.capacity.guests}
+					</p>
 					<p class="label mt-2 text-[var(--color-dark-foreground)]/65">hostů kapacita</p>
 				</div>
 			</div>

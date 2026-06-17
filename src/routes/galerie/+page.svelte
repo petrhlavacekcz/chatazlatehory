@@ -14,6 +14,7 @@
 
 	let lightboxSrc = $state<string | null>(null);
 	let lightboxAlt = $state<string>('');
+	let lightboxDialog = $state<HTMLElement | null>(null);
 
 	function openLightbox(src: string, alt: string) {
 		lightboxSrc = src;
@@ -23,17 +24,46 @@
 	function closeLightbox() {
 		lightboxSrc = null;
 	}
+
+	// A11y: Escape zavře lightbox + body scroll lock + focus return (WCAG 2.1.2, 2.4.3)
+	let lastFocused = $state<HTMLElement | null>(null);
+
+	$effect(() => {
+		if (lightboxSrc) {
+			lastFocused = document.activeElement as HTMLElement;
+			document.body.style.overflow = 'hidden';
+			queueMicrotask(() => lightboxDialog?.focus());
+		} else {
+			document.body.style.overflow = '';
+			lastFocused?.focus();
+		}
+	});
+
+	function onKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape' && lightboxSrc) {
+			e.preventDefault();
+			closeLightbox();
+		}
+	}
 </script>
+
+<svelte:window onkeydown={onKeydown} />
 
 <svelte:head>
 	<title>Fotogalerie · {cabin.name}</title>
-	<meta name="description" content="Fotogalerie chaty — exteriér, interiér, areál i okolní krajina Jeseníků." />
+	<meta
+		name="description"
+		content="Fotogalerie chaty — exteriér, interiér, areál i okolní krajina Jeseníků."
+	/>
 </svelte:head>
 
 <section class="border-b border-[var(--color-border)] bg-[var(--color-background)] pb-16 md:pb-20">
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
 		<p class="label text-[var(--color-accent-text)]">Galerie</p>
-		<h1 class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]" style="font-size: clamp(2.25rem, 6vw, 3.75rem);">
+		<h1
+			class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]"
+			style="font-size: clamp(2.25rem, 6vw, 3.75rem);"
+		>
 			Fotky chaty a okolí
 		</h1>
 	</div>
@@ -77,24 +107,35 @@
 		</div>
 
 		{#if filteredImages.length === 0}
-			<p class="py-12 text-center font-sans text-[var(--color-muted)]">V této kategorii zatím nejsou fotky.</p>
+			<p class="py-12 text-center font-sans text-[var(--color-muted)]">
+				V této kategorii zatím nejsou fotky.
+			</p>
 		{/if}
 	</div>
 </section>
 
 {#if lightboxSrc}
 	<div
+		bind:this={lightboxDialog}
 		class="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--color-dark-deep)]/95 p-4 backdrop-blur-sm"
 		onclick={closeLightbox}
-		onkeydown={(e) => e.key === 'Escape' && closeLightbox()}
+		onkeydown={(e) => {
+			if (e.key === 'Escape') {
+				e.preventDefault();
+				closeLightbox();
+			}
+		}}
 		role="dialog"
 		aria-modal="true"
 		aria-label="Náhled fotografie"
-		tabindex="0"
+		tabindex="-1"
 	>
 		<button
 			class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full text-[var(--color-dark-foreground)]/80 hover:text-[var(--color-accent)]"
-			onclick={closeLightbox}
+			onclick={(e) => {
+				e.stopPropagation();
+				closeLightbox();
+			}}
 			aria-label="Zavřít"
 		>
 			<Icon icon="tabler:x" class="h-6 w-6" />
@@ -104,7 +145,9 @@
 			alt={lightboxAlt}
 			class="max-h-[90vh] max-w-full rounded-[var(--radius-md)] object-contain shadow-[var(--shadow-hover)]"
 		/>
-		<p class="absolute bottom-6 left-0 right-0 px-6 text-center font-sans text-sm text-[var(--color-dark-foreground)]/70">
+		<p
+			class="pointer-events-none absolute bottom-6 left-0 right-0 px-6 text-center font-sans text-sm text-[var(--color-dark-foreground)]/70"
+		>
 			{lightboxAlt}
 		</p>
 	</div>

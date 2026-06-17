@@ -9,7 +9,9 @@
 		<div class="grid gap-12 md:grid-cols-3">
 			<div class="space-y-4">
 				<p class="font-serif text-2xl font-light">{cabin.name}</p>
-				<p class="max-w-xs font-sans text-sm leading-relaxed text-[var(--color-dark-foreground)]/55">
+				<p
+					class="max-w-xs font-sans text-sm leading-relaxed text-[var(--color-dark-foreground)]/55"
+				>
 					{cabin.location.city}, {cabin.location.region}. {cabin.area}.
 				</p>
 			</div>
@@ -19,7 +21,10 @@
 				<ul class="space-y-3">
 					{#each navItems as item (item.href)}
 						<li>
-							<a href={item.href} class="font-sans text-sm text-[var(--color-dark-foreground)]/65 transition-colors hover:text-[var(--color-accent)]">
+							<a
+								href={item.href}
+								class="font-sans text-sm text-[var(--color-dark-foreground)]/65 transition-colors hover:text-[var(--color-accent)]"
+							>
 								{item.label}
 							</a>
 						</li>
@@ -52,7 +57,9 @@
 			</div>
 		</div>
 
-		<div class="mt-16 flex flex-col items-start justify-between gap-2 border-t border-[var(--color-dark-foreground)]/10 pt-8 font-sans text-xs text-[var(--color-dark-foreground)]/35 sm:flex-row sm:items-center">
+		<div
+			class="mt-16 flex flex-col items-start justify-between gap-2 border-t border-[var(--color-dark-foreground)]/10 pt-8 font-sans text-xs text-[var(--color-dark-foreground)]/35 sm:flex-row sm:items-center"
+		>
 			<p>© {new Date().getFullYear()} {cabin.name}. Všechna práva vyhrazena.</p>
 			<p>{cabin.location.address}</p>
 		</div>

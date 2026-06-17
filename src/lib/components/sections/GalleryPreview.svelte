@@ -8,7 +8,10 @@
 		<div class="mb-14 flex flex-wrap items-end justify-between gap-6">
 			<div>
 				<p class="label text-[var(--color-accent-text)]">Galerie</p>
-				<h2 class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]" style="font-size: clamp(2.25rem, 5vw, 3.5rem);">
+				<h2
+					class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]"
+					style="font-size: clamp(2.25rem, 5vw, 3.5rem);"
+				>
 					Podívejte se,<br />jaké to tu je
 				</h2>
 			</div>
@@ -17,7 +20,9 @@
 				class="group inline-flex items-center gap-3 font-sans text-sm font-medium uppercase tracking-[0.15em] text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent)]"
 			>
 				Celá galerie
-				<span class="inline-block h-px w-10 bg-current transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:w-16"></span>
+				<span
+					class="inline-block h-px w-10 bg-current transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:w-16"
+				></span>
 			</a>
 		</div>
 

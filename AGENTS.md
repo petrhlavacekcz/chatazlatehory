@@ -11,28 +11,28 @@ Cíl: moderní, rychlý, vizuálně čistý web, který chatu prodá — hero, g
 ceník, lokalita a kontaktní/rezervační formulář. Czech-first, mobile-first.
 
 **Zdrojové materiály**: fotografie a video chaty jsou ve složce `assets/` (viz sekce
-*Materiály* níže). Nejsou součástí buildu — do webu se dostanou jen optimalizované kopie.
+_Materiály_ níže). Nejsou součástí buildu — do webu se dostanou jen optimalizované kopie.
 
 ---
 
 ## Tech Stack (LOCKED)
 
-| Kategorie    | Technologie                                              |
-| ------------ | -------------------------------------------------------- |
-| Runtime      | Bun (kompatibilní s Node.js)                             |
-| Framework    | SvelteKit v2 + **Svelte 5 (pouze Runes API)**            |
-| Styling      | **Tailwind CSS v4** (přes `@tailwindcss/vite`)           |
-| UI komponenty| **Vlastní** — žádný ShadCN, žádná hotová knihovna témat  |
-| Primitiva    | `bits-ui` jen pro headless chování (dialog, tabs apod.)  |
-| Ikony        | `@iconify/svelte` + `@iconify-json/tabler` / `unplugin-icons` |
-| Obrázky      | `@sveltejs/enhanced-img` (responzivní, AVIF/WebP)        |
-| Fonty        | Fontsource (lokalně, žádné CDN)                          |
-| Validace     | Zod všude                                                |
-| Formuláře    | SvelteKit form actions + Zod                             |
-| E-mail       | Resend (odeslání rezervačního dotazu z formuláře)        |
-| Animace      | Svelte transitions + Motion (jemné, úsporné)             |
-| SEO          | meta tagy + sitemap + `robots.txt`                       |
-| Deploy       | `adapter-static` (SSG) — rychlé, levné, bezpečné         |
+| Kategorie     | Technologie                                                   |
+| ------------- | ------------------------------------------------------------- |
+| Runtime       | Bun (kompatibilní s Node.js)                                  |
+| Framework     | SvelteKit v2 + **Svelte 5 (pouze Runes API)**                 |
+| Styling       | **Tailwind CSS v4** (přes `@tailwindcss/vite`)                |
+| UI komponenty | **Vlastní** — žádný ShadCN, žádná hotová knihovna témat       |
+| Primitiva     | `bits-ui` jen pro headless chování (dialog, tabs apod.)       |
+| Ikony         | `@iconify/svelte` + `@iconify-json/tabler` / `unplugin-icons` |
+| Obrázky       | `@sveltejs/enhanced-img` (responzivní, AVIF/WebP)             |
+| Fonty         | Fontsource (lokalně, žádné CDN)                               |
+| Validace      | Zod všude                                                     |
+| Formuláře     | SvelteKit form actions + Zod                                  |
+| E-mail        | Resend (odeslání rezervačního dotazu z formuláře)             |
+| Animace       | Svelte transitions + Motion (jemné, úsporné)                  |
+| SEO           | meta tagy + sitemap + `robots.txt`                            |
+| Deploy        | `adapter-static` (SSG) — rychlé, levné, bezpečné              |
 
 **Bez ShadCN je záměr.** Design se staví od základu s Tailwind utility a vlastními
 komponentami, aby byl maximálně moderní a nevázaný na cizí designový systém.
@@ -215,21 +215,21 @@ Pravidla:
 ```svelte
 <!-- src/lib/components/ui/Button.svelte -->
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { cn } from '$lib/utils/cn';
+	import type { Snippet } from 'svelte';
+	import { cn } from '$lib/utils/cn';
 
-  let {
-    variant = 'primary',
-    href,
-    class: klass,
-    children
-  }: { variant?: 'primary' | 'ghost'; href?: string; class?: string; children: Snippet } = $props();
+	let {
+		variant = 'primary',
+		href,
+		class: klass,
+		children
+	}: { variant?: 'primary' | 'ghost'; href?: string; class?: string; children: Snippet } = $props();
 </script>
 
 {#if href}
-  <a {href} class={cn('btn', `btn-${variant}`, klass)}>{@render children()}</a>
+	<a {href} class={cn('btn', `btn-${variant}`, klass)}>{@render children()}</a>
 {:else}
-  <button class={cn('btn', `btn-${variant}`, klass)}>{@render children()}</button>
+	<button class={cn('btn', `btn-${variant}`, klass)}>{@render children()}</button>
 {/if}
 ```
 
@@ -241,21 +241,21 @@ import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
 
 const inquirySchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  from: z.string(),
-  to: z.string(),
-  message: z.string().optional()
+	name: z.string().min(2),
+	email: z.string().email(),
+	from: z.string(),
+	to: z.string(),
+	message: z.string().optional()
 });
 
 export const actions = {
-  default: async ({ request }) => {
-    const data = Object.fromEntries(await request.formData());
-    const parsed = inquirySchema.safeParse(data);
-    if (!parsed.success) return fail(400, { errors: parsed.error.flatten() });
-    // odeslat přes Resend → e-mail majiteli
-    return { success: true };
-  }
+	default: async ({ request }) => {
+		const data = Object.fromEntries(await request.formData());
+		const parsed = inquirySchema.safeParse(data);
+		if (!parsed.success) return fail(400, { errors: parsed.error.flatten() });
+		// odeslat přes Resend → e-mail majiteli
+		return { success: true };
+	}
 };
 ```
 
@@ -275,11 +275,11 @@ Držet zásadu LEAN: žádné překlady, dokud o ně není poptávka.
 
 **Před prací na designu vždy čti:**
 
-| Soubor | Co obsahuje | Kdy číst |
-| ------ | ----------- | -------- |
-| `PRODUCT.md` | Strategický kontext: register (brand), users, purpose, brand personality, anti-references, design principles, a11y | Před jakýmkoliv design rozhodnutím |
-| `DESIGN.md` | Vizuální systém: Creative North Star („The Quiet Lodge"), paleta (OKLCH), typografie, elevation, named rules, Do's/Don'ts | Před psaním jakéhokoliv CSS/komponenty |
-| `.impeccable/config.json` | Konfigurace design detector hooku (zapnuto) | — |
+| Soubor                    | Co obsahuje                                                                                                               | Kdy číst                               |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| `PRODUCT.md`              | Strategický kontext: register (brand), users, purpose, brand personality, anti-references, design principles, a11y        | Před jakýmkoliv design rozhodnutím     |
+| `DESIGN.md`               | Vizuální systém: Creative North Star („The Quiet Lodge"), paleta (OKLCH), typografie, elevation, named rules, Do's/Don'ts | Před psaním jakéhokoliv CSS/komponenty |
+| `.impeccable/config.json` | Konfigurace design detector hooku (zapnuto)                                                                               | —                                      |
 
 Oba soubory vytvořil `/impeccable init` a udržují se aktuální. Po implementaci komponent spusť
 `/impeccable document` v scan módu, aby DESIGN.md zachytil reálné tokeny a komponenty
@@ -299,11 +299,11 @@ clay accent; typografie = serif display + sans body; motion = restrained.
 Web má být **world-class**, ne jen „funkční". Design kvalita se zde aktivně řídí třemi
 komplementárními vrstvami skillů. Každá řeší jiný problém:
 
-| Vrstva | Skill | Co řeší | Kdy použít |
-| ------ | ----- | ------- | ---------- |
-| **Engineering workflow** | `superpowers` (plugin) | TDD, systematic debugging, plánování, code review | Proces: plán → implementace → verifikace |
-| **Svelte 5 kód** | `svelte-ai` (lokální) + Svelte MCP | Runes syntax, best practices, autofixer | Kdykoliv píšeš/měníš `.svelte` |
-| **Design kvalita** | `impeccable` (lokální, 23 příkazů) | Typografie, barvy, motion, layout, anti-AI-slop | Vizuální kvalita, „world-class" vzhled |
+| Vrstva                   | Skill                              | Co řeší                                           | Kdy použít                               |
+| ------------------------ | ---------------------------------- | ------------------------------------------------- | ---------------------------------------- |
+| **Engineering workflow** | `superpowers` (plugin)             | TDD, systematic debugging, plánování, code review | Proces: plán → implementace → verifikace |
+| **Svelte 5 kód**         | `svelte-ai` (lokální) + Svelte MCP | Runes syntax, best practices, autofixer           | Kdykoliv píšeš/měníš `.svelte`           |
+| **Design kvalita**       | `impeccable` (lokální, 23 příkazů) | Typografie, barvy, motion, layout, anti-AI-slop   | Vizuální kvalita, „world-class" vzhled   |
 
 > **Ať je kód sebečistší, generický AI design vypadá genericky.** Pro marketingový web,
 > kde „design IS the product", je `impeccable` ta nejdůležitější vrstva. Engineering skilly
@@ -316,7 +316,7 @@ Tento web patří do **brand registru** (marketing/landing → design JE produkt
 (`PRODUCT.md`, `DESIGN.md` v rootu — vytvoří je `/impeccable init` respektive `shape`).
 
 **Absolutní zákazy (AI slop tells)** — tyto patterny se v projektu nikdy nesmí objevit
-(plný seznam v `impeccable/SKILL.md`, sekce *Absolute bans*):
+(plný seznam v `impeccable/SKILL.md`, sekce _Absolute bans_):
 
 - Proužkové `border-left/right` akcenty na kartách/callouts.
 - Gradient text (`background-clip: text` + gradient).
@@ -339,18 +339,18 @@ init   →  shape   →  craft (stavět sekce)  →  critique  →
   (typeset/layout/animate/colorize/delight dle potřeby)  →  polish  →  document
 ```
 
-| Fáze | Příkaz | Výstup pro chatazlatehory |
-| ---- | ------ | -------------------------- |
-| Setup | `/impeccable init` | `PRODUCT.md` (kontext chaty, cíl webu, publikum, register) |
-| Design brief | `/impeccable shape` | UX/UI plán sekcí **před** psaním kódu (tón chaty, selling pointy) |
-| Build | `/impeccable craft [sekce]` | Postavit sekci end-to-end |
-| Evaluate | `/impeccable critique` | UX review s heuristickým scoringem + persona testy |
-| Evaluate | `/impeccable audit` | Technická kontrola (a11y, performance, responsive) — kritické s 47 fotkami |
-| Refine | `/impeccable typeset\|layout\|animate\|colorize\|delight` | Doladění jedné dimenze |
-| Refine | `/impeccable polish` | Poslední raňka mezi „dobré" a „skvělé" |
-| Fix | `/impeccable optimize` | LCP, bundle size — klíčové pro rychlost webu s galerií |
-| Fix | `/impeccable adapt` | Responsive napříč zařízeními (mobil = primární) |
-| Capture | `/impeccable document` | `DESIGN.md` — vizuální systém zachycený pro budoucí agenty |
+| Fáze         | Příkaz                                                    | Výstup pro chatazlatehory                                                  |
+| ------------ | --------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Setup        | `/impeccable init`                                        | `PRODUCT.md` (kontext chaty, cíl webu, publikum, register)                 |
+| Design brief | `/impeccable shape`                                       | UX/UI plán sekcí **před** psaním kódu (tón chaty, selling pointy)          |
+| Build        | `/impeccable craft [sekce]`                               | Postavit sekci end-to-end                                                  |
+| Evaluate     | `/impeccable critique`                                    | UX review s heuristickým scoringem + persona testy                         |
+| Evaluate     | `/impeccable audit`                                       | Technická kontrola (a11y, performance, responsive) — kritické s 47 fotkami |
+| Refine       | `/impeccable typeset\|layout\|animate\|colorize\|delight` | Doladění jedné dimenze                                                     |
+| Refine       | `/impeccable polish`                                      | Poslední raňka mezi „dobré" a „skvělé"                                     |
+| Fix          | `/impeccable optimize`                                    | LCP, bundle size — klíčové pro rychlost webu s galerií                     |
+| Fix          | `/impeccable adapt`                                       | Responsive napříč zařízeními (mobil = primární)                            |
+| Capture      | `/impeccable document`                                    | `DESIGN.md` — vizuální systém zachycený pro budoucí agenty                 |
 
 **Pravidla pro chatazlatehory:**
 

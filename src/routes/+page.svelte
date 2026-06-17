@@ -12,7 +12,10 @@
 
 <svelte:head>
 	<title>Chata Zlaté Hory · Klid, komfort a příroda v Jeseníkách</title>
-	<meta name="description" content="Pronájem dřevěné horské chaty v areálu Bohemaland ve Zlatých Horách. Klid, komfort a příroda Jeseníků — kapacita 8 hostů, sauna, krb, zahrada." />
+	<meta
+		name="description"
+		content="Pronájem dřevěné horské chaty v areálu Bohemaland ve Zlatých Horách. Klid, komfort a příroda Jeseníků — kapacita 8 hostů, sauna, krb, zahrada."
+	/>
 </svelte:head>
 
 <!-- Story flow: hero → o chatě → video atmosféra → galerie → prožitek → vybavení → okolí → ceník → CTA -->

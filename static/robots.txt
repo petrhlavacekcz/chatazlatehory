@@ -1,3 +1,8 @@
-# allow crawling everything by default
+# robots.txt — Chata Zlaté Hory
+# Povol indexování všeho
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://chatazlatehory.cz/sitemap.xml

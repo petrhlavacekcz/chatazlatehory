@@ -15,11 +15,6 @@
 	DESIGN.md The No-Eyebrow Rule: žádné „O NÁS / CENÍK / GALERIE" nad každou sekcí.
 	Používat maximálně jednou na stránce jako záměrný úvod, nikoliv jako grammar.
 -->
-<p
-	class={cn(
-		'text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground',
-		klass
-	)}
->
+<p class={cn('text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground', klass)}>
 	{@render children()}
 </p>

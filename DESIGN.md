@@ -1,8 +1,10 @@
 <!-- SEED: re-run $impeccable document once there's code to capture the actual tokens and components. -->
 
 ---
+
 name: Chata Zlaté Hory
 description: Premium marketingový web pro pronájem horské chaty v Jeseníkách.
+
 ---
 
 # Design System: Chata Zlaté Hory
@@ -18,6 +20,7 @@ Filozofie: **ticho je designový prvek.** Bílé místo není nedostatek obsahu,
 Tento systém explicitně **odmítá**: krémové „teplé defaulty" 2026 (paper/sand/linen pozadí), gradient text, kartové gridy s ikonami, eyebrow nad každou sekcí, číslované `01/02/03` scaffolding, agresivní „REZERVOVAT" bannery, dřevěné texture pozadí a folklórní kýč „horské chaty", booking.comské listing UI. Plný seznam v `PRODUCT.md` (Anti-references) a `impeccable/SKILL.md` (Absolute bans).
 
 **Key Characteristics:**
+
 - Pure white pozadí — teplotu brandu nese fotka a accent, nikoliv surface.
 - Editorial serif display + zklidněný sans body — magazine-grade hierarchy.
 - Jeden signature accent (hluboká sage) ≤10% plochy; vzácnost je pointa.
@@ -29,12 +32,15 @@ Tento systém explicitně **odmítá**: krémové „teplé defaulty" 2026 (pape
 Strategie: **Restrained** — pure white surface + jeden signature accent na ≤10% plochy. Teplotu brandu nenese pozadí, nese ji fotka chaty + sage accent. Barevné hodnoty v OKLCH (kanonický formát projektu). Dark mode je out-of-scope pro tuto fázi (light only); tokeny se ale strukturuji jako CSS custom properties, aby byl dark mode drop-in bez refaktoru.
 
 ### Primary
+
 - **Deep Sage** (`oklch(0.50 0.085 125)`): Signature brand barva, anchor palette (seed hue 110° z `palette.mjs`). Používá se výhradně na CTA, aktivní stavy, klíčové akcenty, header/footer tón (Bohemaland forest vibe). Vzácnost je pointa — pokud je sage na víc než 10% obrazovky, je to moc. Bílý text na fill (saturovaná mid-luminance, viz Helmholtz-Kohlrausch).
 
 ### Accent
+
 - **Warm Clay** (`oklch(0.45 0.11 45)`): Druhá brand barva, distinct od primary v hue (45° vs 125°) i lightness. CTA highlight, drobné sekundární akcenty, status indikátory. Nahrazuje Stitch `#C0392B` (teplá červená) teplejší hlínou, která lépe ladí s lesní paletou. Bílý text na fill.
 
 ### Neutral
+
 - **Pure White** (`oklch(1.000 0.000 0)`): Body background. Přesně pure white — ne `#F5F5F5` (Stitch navrhoval), ne 0.99, ne chroma 0.002. Žádná skrytá teplota. (DEFAULT A z palette guidance — Stripe/Notion/Apple doktrína.)
 - **Mist** (`oklch(0.975 0.004 120)`): Surface pro sekce/karty, velmi jemně tinted směrem k sage hue. Subtlist než samotná sage — cítit, ne vidět.
 - **Ink** (`oklch(0.22 0.010 120)`): Body text, ~14:1 kontrast vs white. Lehce warm-tinted k brand hue, ale primárně hluboká šedá.
@@ -42,6 +48,7 @@ Strategie: **Restrained** — pure white surface + jeden signature accent na ≤
 - **Hairline** (`oklch(0.90 0.003 120)`): Subtilní borders, dividers. Téměř neviditelné, jen naznačené.
 
 ### Named Rules
+
 **The One Voice Rule.** Deep Sage se objeví na maximálně 10% jakékoliv obrazovky. Vzácnost je důvod, proč rezonuje. Pokud ho potřebuješ na víc, přehodnoť — brand mlčí, ne křičí.
 
 **The Pure Surface Rule.** Pozadí je vždy pure white (`oklch(1.000 0.000 0)`). Žádné cream/sand/paper/línen. Teplotu brandu nese fotka a accent — nikoliv surface. Dát teplotu do obou (primary + bg) je AI klišé.
@@ -64,6 +71,7 @@ hospitality atmosféru. Thin (300) display vs medium (500) body vytváří commi
 bez potřeby druhé rodiny. Čte se jako premium outdoor/hospitality hybrid.
 
 ### Hierarchy
+
 - **Display** (Hanken Grotesk, 300 weight, `clamp(2.75rem, 8vw, 5rem)`, line-height 1.0–1.05, letter-spacing -0.02em až -0.03em): Hero headline, hlavní statement. Max 5rem (~80px). `text-wrap: balance`.
 - **Headline** (Hanken Grotesk, 400, `clamp(1.875rem, 4vw, 2.5rem)`, line-height 1.15): Sekce nadpisy.
 - **Title** (Hanken Grotesk, 500, `clamp(1.25rem, 2vw, 1.5rem)`, line-height 1.25): Podnadpisy, card tituly.
@@ -71,6 +79,7 @@ bez potřeby druhé rodiny. Čte se jako premium outdoor/hospitality hybrid.
 - **Label** (Hanken Grotesk, 600, 0.75rem, letter-spacing 0.08em, uppercase POUZE u záměrného brand kick-off — nikoliv eyebrow nad každou sekcí): Tagy, metadata, CTA microcopy.
 
 ### Named Rules
+
 **The Single-Voice Rule.** Jedna rodina (Hanken Grotesk), committed váhový kontrast (300 thin display vs 500 medium body). Žádné míchání serif/sans, žádné reflex display fonty (Fraunces/Cormorant/Inter).
 
 **The No-Eyebrow Rule.** Žádné malé uppercase tracked eyebrow nad každou sekcí („O NÁS" / „CENÍK" / „GALERIE"). Saturated AI scaffold. Jedno záměrné číslované/popsané kickoff na jedné stránce je hlas; eyebrow nad každou sekcí je AI gramatika.
@@ -84,10 +93,12 @@ Systém je **flat by default**. Hloubka se nevyjadřuje stíny, ale tonální vr
 Stíny se objevují výhradně jako response na stav (hover, elevation, focus) a jen když materiálně zlepší efekt. Žádné dekorativní ghost-cards (1px border + široký soft shadow najednou — to je codex tell). Pick one: buď solid border, nebo definovaný shadow ≤8px blur, nikdy obojí jako dekorace.
 
 ### Shadow Vocabulary
+
 - **Hover Lift** (`box-shadow: 0 2px 8px oklch(0.22 0.010 120 / 0.08)`): Jemný náznak zdvihu na hover interaktivních karet/galerie items. ≤8px blur.
 - **Focus Ring** (`box-shadow: 0 0 0 2px oklch(0.50 0.085 125 / 0.4)`): Viditelný focus indicator pro klávesnici, v brand accent.
 
 ### Named Rules
+
 **The Flat-By-Default Rule.** Surfacy jsou flat v klidu. Stíny přicházejí jen jako response na stav (hover, focus, elevation). Dekorativní stíny v klidu = AI slop tell.
 
 ## 5. Components
@@ -97,6 +108,7 @@ Stíny se objevují výhradně jako response na stav (hover, elevation, focus) a
 ## 6. Do's and Don'ts
 
 ### Do:
+
 - **Do** použij pure white pozadí (`oklch(1.000 0.000 0)`) — teplotu brandu nese fotka a sage accent, nikoliv surface.
 - **Do** drž Deep Sage na ≤10% plochy jakékoliv obrazovky (The One Voice Rule).
 - **Do** použij white text na saturrovaných fills (Deep Sage, Warm Clay) — sat mid-luminance, WCAG může lhát, Helmholtz-Kohlrausch ne.
@@ -106,6 +118,7 @@ Stíny se objevují výhradně jako response na stav (hover, elevation, focus) a
 - **Do** dotazy na mobilu nejprve (mobile-first), touch cíle ≥44px, kontrast čitelný venku na slunci.
 
 ### Don't:
+
 - **Don't** použij krémové/sand/paper/línen pozadí (cream AI defaulta 2026: OKLCH L 0.84–0.97, C<0.06, hue 40–100). Teplotu brandu dáváš do primary i bg = AI klišé.
 - **Don't** použij gradient text (`background-clip: text` + gradient). Jedna solid barva, důraz přes váhu nebo velikost.
 - **Don't** dávej eyebrow (malé caps tracked) nad každou sekcí — saturated AI scaffold (The No-Eyebrow Rule).

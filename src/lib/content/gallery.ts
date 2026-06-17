@@ -25,11 +25,23 @@ const img = (name: string) => `/img/gallery/${name}.avif`;
 
 export const galleryImages: GalleryImage[] = [
 	// ── Exteriér chaty (venku — budova, zahrada, krajina) ──────
-	{ src: img('1'), alt: 'Dřevěná chata v podvečerním světle, osvětlená okna, les v pozadí', category: 'exterior' },
-	{ src: img('2'), alt: 'Pohled na chatu ze zahrady, terasa s venkovním posezením', category: 'exterior' },
+	{
+		src: img('1'),
+		alt: 'Dřevěná chata v podvečerním světle, osvětlená okna, les v pozadí',
+		category: 'exterior'
+	},
+	{
+		src: img('2'),
+		alt: 'Pohled na chatu ze zahrady, terasa s venkovním posezením',
+		category: 'exterior'
+	},
 	{ src: img('3'), alt: 'Zimní detail chaty se sněhem na střeše', category: 'exterior' },
 	{ src: img('4'), alt: 'Celkový pohled na chatu se sněhem, zimní den', category: 'exterior' },
-	{ src: img('5'), alt: 'Chata v zimní krajině, sníh na střeše a okolních stromech', category: 'exterior' },
+	{
+		src: img('5'),
+		alt: 'Chata v zimní krajině, sníh na střeše a okolních stromech',
+		category: 'exterior'
+	},
 	{ src: img('6'), alt: 'Vstup do chaty se sněhem v popředí', category: 'exterior' },
 	{ src: img('7'), alt: 'Detail exteriéru chaty', category: 'exterior' },
 	{ src: img('8'), alt: 'Hlavní vchod do chaty, dřevěné schody a veranda', category: 'exterior' },
