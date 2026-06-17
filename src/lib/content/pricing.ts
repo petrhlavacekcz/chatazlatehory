@@ -14,7 +14,7 @@ export const pricing: PriceTier[] = [
 	},
 	{
 		id: 'low-season-weekend',
-		label: 'Mimosezónna · víkend',
+		label: 'Mimosezóna · víkend',
 		period: 'pátek–neděle',
 		amount: 4500,
 		note: 'min. 2 noci',
