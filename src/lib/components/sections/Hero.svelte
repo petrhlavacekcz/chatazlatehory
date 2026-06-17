@@ -15,10 +15,13 @@
 		class="absolute inset-0 h-full w-full object-cover"
 		fetchpriority="high"
 	/>
-	<!-- Vertikální gradient zespodu (espresso) — zajišťuje čitelnost textu.
-	     Horizontální gradient zleva pro lepší kontrast v levém rohu. -->
-	<div class="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-deep)] via-[var(--color-dark-deep)]/60 to-[var(--color-dark-deep)]/20"></div>
-	<div class="absolute inset-0 bg-gradient-to-r from-[var(--color-dark-deep)]/70 via-transparent to-transparent"></div>
+	<!-- Overlay pro čitelnost:
+	     1. Top gradient (shora) — zajišťuje čitelnost průhledného headeru nahoře
+	     2. Bottom gradient (zdola) — zajišťuje čitelnost headline dole
+	     3. Left gradient — extra kontrast pro levý roh s textem -->
+	<div class="absolute inset-0 bg-gradient-to-b from-[var(--color-dark-deep)]/70 via-transparent to-transparent"></div>
+	<div class="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-deep)] via-[var(--color-dark-deep)]/50 to-transparent"></div>
+	<div class="absolute inset-0 bg-gradient-to-r from-[var(--color-dark-deep)]/60 via-transparent to-transparent"></div>
 
 	<div class="relative mx-auto w-full max-w-7xl px-[var(--spacing-container)] pb-14 pt-24 md:pb-24 md:pt-32">
 		<div class="max-w-2xl">

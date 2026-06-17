@@ -14,18 +14,23 @@
 		return current === target || current.startsWith(target + '/');
 	};
 
+	// Scroll-aware: transparent header je světlý text nad tmavým herem.
+	// Po scrollu >80px (nebo když není transparent) přepne na solid cream + tmavý text.
 	let scrolled = $state(false);
+
 	function onScroll() {
 		scrolled = window.scrollY > 80;
 	}
+
 	const solid = $derived(!transparent || scrolled);
 
 	const logoColor = $derived(solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]');
 	const subColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/55');
-	const navItemColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/85');
+	const navItemColor = $derived(solid ? 'text-[var(--color-muted)]' : 'text-[var(--color-dark-foreground)]/90');
 	const navItemHover = $derived(
 		solid ? 'hover:text-[var(--color-foreground)]' : 'hover:text-[var(--color-dark-foreground)]'
 	);
+	const toggleColor = $derived(solid ? 'text-[var(--color-foreground)]' : 'text-[var(--color-dark-foreground)]');
 </script>
 
 <svelte:window onscroll={onScroll} />
@@ -33,46 +38,54 @@
 <header
 	class={cn(
 		'left-0 right-0 top-0 z-50 transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)]',
-		solid ? 'sticky bg-[var(--color-background)]/95 shadow-[0_1px_0_var(--color-border)] backdrop-blur-md' : 'absolute'
+		solid
+			? 'sticky bg-[var(--color-background)]/95 shadow-[0_1px_0_var(--color-border)] backdrop-blur-md'
+			: 'absolute'
 	)}
 >
 	<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-[var(--spacing-container)]">
-		<!-- Logo (left) — single line na mobile i desktop -->
+		<!-- Logo (left) — single line -->
 		<a href="/" class="flex items-baseline gap-2 leading-none">
 			<span class={cn('font-serif text-base font-light tracking-tight transition-colors sm:text-lg', logoColor)}>
 				{cabin.name}
 			</span>
-			<span class={cn('label hidden !text-[0.6rem] !tracking-[0.2em] sm:inline', subColor)}>
+			<span class={cn('label hidden !text-[0.6rem] !tracking-[0.2em] transition-colors sm:inline', subColor)}>
 				{cabin.area}
 			</span>
 		</a>
 
-		<!-- Center nav (desktop only) -->
-		<nav class="hidden items-center justify-center gap-10 lg:flex" aria-label="Hlavní navigace">
-			{#each navItems as item (item.href)}
-				<a
-					href={item.href}
-					class={cn(
-						'label !tracking-[0.18em] transition-colors duration-[var(--duration-base)]',
-						isActive(item.href) ? 'text-[var(--color-accent)]' : cn(navItemColor, navItemHover)
-					)}
-				>
-					{item.label}
-				</a>
-			{/each}
-		</nav>
+		<!-- Desktop nav + CTA (1024px+) -->
+		<div class="hidden items-center gap-10 lg:flex">
+			<nav aria-label="Hlavní navigace">
+				<ul class="flex items-center gap-10">
+					{#each navItems as item (item.href)}
+						<li>
+							<a
+								href={item.href}
+								class={cn(
+									'label !tracking-[0.18em] transition-colors duration-[var(--duration-base)]',
+									isActive(item.href)
+										? 'text-[var(--color-accent)]'
+										: cn(navItemColor, navItemHover)
+								)}
+							>
+								{item.label}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</nav>
+			<a
+				href="/rezervace/"
+				class="rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-sans text-sm font-medium text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)]"
+			>
+				Rezervovat
+			</a>
+		</div>
 
-		<!-- CTA (desktop only) -->
-		<a
-			href="/rezervace/"
-			class="hidden rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-sans text-sm font-medium text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)] md:inline-flex"
-		>
-			Rezervovat
-		</a>
-
-		<!-- Mobile toggle (right) -->
+		<!-- Mobile/tablet toggle (do 1023px) — stejný breakpoint jako nav -->
 		<button
-			class={cn('inline-flex h-10 w-10 items-center justify-center md:hidden', logoColor)}
+			class={cn('inline-flex h-10 w-10 items-center justify-center transition-colors lg:hidden', toggleColor)}
 			onclick={() => (mobileOpen = !mobileOpen)}
 			aria-label={mobileOpen ? 'Zavřít menu' : 'Otevřít menu'}
 			aria-expanded={mobileOpen}
@@ -81,12 +94,14 @@
 		</button>
 	</div>
 
-	<!-- Mobile nav -->
+	<!-- Mobile/tablet nav (do 1023px) -->
 	{#if mobileOpen}
 		<nav
 			class={cn(
-				'md:hidden',
-				solid ? 'border-t border-[var(--color-border)] bg-[var(--color-background)]' : 'bg-[var(--color-dark-deep)]'
+				'border-t lg:hidden',
+				solid
+					? 'border-[var(--color-border)] bg-[var(--color-background)]'
+					: 'border-[var(--color-dark-foreground)]/15 bg-[var(--color-dark-deep)]'
 			)}
 			aria-label="Mobilní navigace"
 		>
@@ -100,8 +115,8 @@
 							isActive(item.href)
 								? 'text-[var(--color-accent)]'
 								: solid
-									? 'text-[var(--color-muted)] hover:bg-[var(--color-surface)]'
-									: 'text-[var(--color-dark-foreground)]/80 hover:bg-[var(--color-dark-foreground)]/10'
+									? 'text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)]'
+									: 'text-[var(--color-dark-foreground)]/85 hover:bg-[var(--color-dark-foreground)]/10'
 						)}
 					>
 						{item.label}
