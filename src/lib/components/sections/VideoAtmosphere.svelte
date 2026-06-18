@@ -6,12 +6,15 @@
 	Video sekce — distill. Video JE moment, text je jen nádech.
 	Jeden tracked label + jeden krátký light serif řádek, vlevo dole.
 	Žádný subheadline, žádný popis — ať video dýchá.
+
+	Mobil: video je 100% šířky, výška podle 16:9 formátu (žádné oříznutí).
+	Desktop (md+): immersive režim — sekce 85svh, video object-cover cropuje.
 -->
 <section
-	class="relative flex min-h-[60svh] items-end overflow-hidden bg-[var(--color-dark-deep)] md:min-h-[85svh]"
+	class="relative flex items-end overflow-hidden bg-[var(--color-dark-deep)] md:min-h-[85svh]"
 >
 	<video
-		class="absolute inset-0 h-full w-full object-cover object-center"
+		class="relative block aspect-video w-full object-cover object-center md:absolute md:inset-0 md:h-full md:w-full md:aspect-auto"
 		poster="/img/gallery/1.avif"
 		autoplay
 		muted
@@ -28,7 +31,9 @@
 		class="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-deep)]/80 via-transparent to-transparent"
 	></div>
 
-	<div class="relative mx-auto w-full max-w-7xl px-[var(--spacing-container)] pb-16 pt-32 md:pb-24">
+	<div
+		class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-7xl px-[var(--spacing-container)] pb-10 md:relative md:pt-32 md:pb-24"
+	>
 		<div class="max-w-xl">
 			<p class="label text-[var(--color-accent)]">Atmosféra</p>
 			<p
