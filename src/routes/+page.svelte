@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cabin } from '$lib/content/cabin';
 	import Hero from '$lib/components/sections/Hero.svelte';
 	import About from '$lib/components/sections/About.svelte';
 	import VideoAtmosphere from '$lib/components/sections/VideoAtmosphere.svelte';
@@ -11,10 +12,10 @@
 </script>
 
 <svelte:head>
-	<title>Chata Zlaté Hory · Klid, komfort a příroda v Jeseníkách</title>
+	<title>{cabin.name} · Klid, komfort a příroda v Jeseníkách</title>
 	<meta
 		name="description"
-		content="Pronájem dřevěné horské chaty v areálu Bohemaland ve Zlatých Horách. Klid, komfort a příroda Jeseníků — kapacita 8 hostů, sauna, krb, zahrada."
+		content={`Pronájem dřevěné horské chaty v areálu ${cabin.area} ve Zlatých Horách. Klid, komfort a příroda Jeseníků — kapacita ${cabin.capacity.guests} hostů, sauna, krb, zahrada.`}
 	/>
 </svelte:head>
 

@@ -56,7 +56,7 @@
 			Kontakt
 		</p>
 		<h1
-			class="mt-4 max-w-3xl font-light tracking-[-0.02em] text-[var(--color-foreground)]"
+			class="mt-4 max-w-3xl font-serif font-light tracking-[-0.02em] text-[var(--color-foreground)]"
 			style="font-size: clamp(2.25rem, 6vw, 3.5rem); line-height: 1.08;"
 		>
 			Ozvěte se nám

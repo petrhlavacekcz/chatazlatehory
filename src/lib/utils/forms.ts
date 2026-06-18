@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { cabin } from '$lib/content/cabin';
 
 /**
  * Sdílená Zod schémata pro formuláře.
@@ -18,7 +19,14 @@ export const inquirySchema = z.object({
 		.optional()
 		.refine((v) => !v || /^\d+$/.test(v), 'Zadejte číslo')
 		.transform((v) => (v ? Number(v) : undefined))
-		.pipe(z.number().int().min(1).max(20).optional()),
+		.pipe(
+			z
+				.number()
+				.int()
+				.min(1)
+				.max(cabin.capacity.guests, `Maximálně ${cabin.capacity.guests} hostů`)
+				.optional()
+		),
 	message: z.string().max(2000).optional()
 });
 
@@ -36,7 +44,7 @@ export type FieldErrors<T> = Partial<Record<keyof T, string>>;
 /**
  * Odešle data na serverless endpoint.
  * TODO: při nasazení napojit na Resend / Cloudflare Worker / Vercel Edge Function.
- * Endpoint přijímá JSON, odesílá e-mail správci (cabin.manager.email).
+ * Endpoint přijímá JSON, odesílá e-mail majiteli (cabin.manager.email).
  */
 export async function submitInquiry(data: InquiryValues): Promise<{ ok: boolean }> {
 	// Místo skutečného endpointu zatím simulujeme úspěch.
