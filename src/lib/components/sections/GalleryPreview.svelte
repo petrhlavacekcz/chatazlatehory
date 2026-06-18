@@ -26,24 +26,30 @@
 			</a>
 		</div>
 
-		<!-- Editorial: velká fotka vlevo, 2x2 grid vpravo -->
+		<!-- Editorial: velká fotka vlevo, 2x2 grid vpravo — vše landscape (fotky jsou 3:2) -->
 		<div class="grid gap-4 md:grid-cols-2">
-			<a href="/galerie/" class="group relative overflow-hidden rounded-[var(--radius-lg)]">
+			<a
+				href="/galerie/"
+				class="group relative isolate block overflow-hidden rounded-[var(--radius-lg)]"
+			>
 				<img
 					src={galleryPreview[0].src}
 					alt={galleryPreview[0].alt}
 					loading="eager"
-					class="aspect-[4/3] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105 md:aspect-[4/5]"
+					class="block aspect-[3/2] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
 				/>
 			</a>
 			<div class="grid grid-cols-2 gap-4">
 				{#each galleryPreview.slice(1, 5) as image (image.src)}
-					<a href="/galerie/" class="group relative overflow-hidden rounded-[var(--radius-lg)]">
+					<a
+						href="/galerie/"
+						class="group relative isolate block overflow-hidden rounded-[var(--radius-lg)]"
+					>
 						<img
 							src={image.src}
 							alt={image.alt}
 							loading="lazy"
-							class="aspect-square w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
+							class="block aspect-[3/2] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
 						/>
 					</a>
 				{/each}

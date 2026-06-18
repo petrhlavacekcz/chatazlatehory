@@ -68,23 +68,33 @@
 	<div
 		class="mx-auto flex h-20 max-w-7xl items-center justify-between px-[var(--spacing-container)]"
 	>
-		<!-- Logo (left) — single line -->
-		<a href="/" class="flex items-baseline gap-2 leading-none" aria-label="{cabin.name} — domů">
-			<span
+		<!-- Logo (left) — ikona chaty + název -->
+		<a href="/" class="flex items-center gap-2.5 leading-none" aria-label="{cabin.name} — domů">
+			<Icon
+				icon="tabler:building-cottage"
 				class={cn(
-					'font-serif text-base font-light tracking-tight transition-colors sm:text-lg',
+					'h-6 w-6 shrink-0 transition-colors sm:h-7 sm:w-7',
 					mobileOpen ? 'text-[var(--color-dark-foreground)]' : logoColor
 				)}
-			>
-				{cabin.name}
-			</span>
-			<span
-				class={cn(
-					'label hidden !text-[0.6rem] !tracking-[0.2em] transition-colors sm:inline',
-					mobileOpen ? 'text-[var(--color-dark-foreground)]/55' : subColor
-				)}
-			>
-				{cabin.area}
+				aria-hidden="true"
+			/>
+			<span class="flex flex-col">
+				<span
+					class={cn(
+						'font-serif text-base font-light tracking-tight transition-colors sm:text-lg',
+						mobileOpen ? 'text-[var(--color-dark-foreground)]' : logoColor
+					)}
+				>
+					{cabin.name}
+				</span>
+				<span
+					class={cn(
+						'label !text-[0.6rem] !tracking-[0.2em] transition-colors',
+						mobileOpen ? 'text-[var(--color-dark-foreground)]/55' : subColor
+					)}
+				>
+					{cabin.area}
+				</span>
 			</span>
 		</a>
 
