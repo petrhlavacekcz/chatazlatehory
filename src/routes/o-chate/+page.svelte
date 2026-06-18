@@ -2,18 +2,19 @@
 	import { cabin } from '$lib/content/cabin';
 	import { amenities } from '$lib/content/amenities';
 	import { galleryImages } from '$lib/content/gallery';
+	import AmenityList from '$lib/components/sections/AmenityList.svelte';
 	import Icon from '@iconify/svelte';
 
-	const aboutImages = galleryImages.filter(
-		(img) => img.category === 'exterior' || img.category === 'interior'
-	);
+	// Reprezentativní výběr fotek — ne duplikát celé galerie.
+	// Detailní prohlídka patří do /galerie/, tady jen ochutnávka interiéru.
+	const aboutImages = galleryImages.filter((img) => img.category === 'interior').slice(0, 6);
 </script>
 
 <svelte:head>
 	<title>O chatě · {cabin.name}</title>
 	<meta
 		name="description"
-		content={`Podrobnosti o chatě ${cabin.name} v areálu ${cabin.area} — kapacita, dispozice, vybavení.`}
+		content={`Podrobnosti o chatě ${cabin.name} v areálu ${cabin.area} — kapacita, dispozice, vybavení, areál a majitel.`}
 	/>
 </svelte:head>
 
@@ -22,7 +23,7 @@
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
 		<p class="label text-[var(--color-accent-text)]">O chatě</p>
 		<h1
-			class="mt-5 max-w-3xl font-serif font-light leading-[1.08] text-[var(--color-foreground)]"
+			class="mt-6 max-w-3xl font-serif font-light leading-[1.05] text-[var(--color-foreground)]"
 			style="font-size: clamp(2.25rem, 6vw, 3.75rem);"
 		>
 			{cabin.name} v areálu {cabin.area}
@@ -30,29 +31,31 @@
 	</div>
 </section>
 
-<!-- Dispozice + text -->
+<!-- Příběh + dispozice -->
 <section class="bg-[var(--color-background)] py-[var(--spacing-section)]">
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
 		<div class="grid gap-12 md:grid-cols-[1.5fr_1fr] md:gap-16">
 			<div
 				class="space-y-5 font-sans text-base leading-relaxed text-[var(--color-muted)] md:text-lg"
 			>
-				{#each cabin.about as paragraph (paragraph)}
+				{#each cabin.aboutExtended as paragraph (paragraph)}
 					<p>{paragraph}</p>
 				{/each}
 			</div>
 			<aside
-				class="rounded-[var(--radius-lg)] bg-[var(--color-surface)] p-8 ring-1 ring-[var(--color-border)]"
+				class="rounded-[var(--radius-lg)] bg-[var(--color-surface)] p-8 ring-1 ring-[var(--color-border)] md:self-start"
 			>
 				<h2 class="label text-[var(--color-accent-text)]">Dispozice</h2>
-				<dl class="mt-6 space-y-5">
-					{#each [['Kapacita', `${cabin.capacity.guests} hostů`], ['Ložnice', `${cabin.capacity.bedrooms}`], ['Koupelna', `${cabin.capacity.bathrooms}`], ['WC', `${cabin.capacity.wc}`], ['Lokalita', 'Zlaté Hory – Bohemaland']] as [label, value] (label)}
+				<dl class="mt-6 space-y-4">
+					{#each cabin.disposition as row (row.label)}
 						<div
-							class="flex items-baseline justify-between border-b border-[var(--color-border)] pb-4 last:border-0 last:pb-0"
+							class="flex items-baseline justify-between gap-4 border-b border-[var(--color-border)] pb-4 last:border-0 last:pb-0"
 						>
-							<dt class="font-sans text-sm text-[var(--color-muted)]">{label}</dt>
-							<dd class="text-right font-serif text-lg font-normal text-[var(--color-foreground)]">
-								{value}
+							<dt class="font-sans text-sm text-[var(--color-muted)]">{row.label}</dt>
+							<dd
+								class="text-right font-serif text-base font-normal text-[var(--color-foreground)]"
+							>
+								{row.value}
 							</dd>
 						</div>
 					{/each}
@@ -62,15 +65,26 @@
 	</div>
 </section>
 
-<!-- Fotky -->
+<!-- Fotky interiéru (ochutnávka, plná galerie samostatně) -->
 <section class="bg-[var(--color-surface)] py-[var(--spacing-section)]">
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
-		<h2
-			class="mb-10 font-serif font-light text-[var(--color-foreground)]"
-			style="font-size: clamp(1.75rem, 4vw, 2.5rem);"
-		>
-			Podívejte se dovnitř
-		</h2>
+		<div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+			<h2
+				class="max-w-2xl font-serif font-light leading-[1.1] text-[var(--color-foreground)]"
+				style="font-size: clamp(1.75rem, 4vw, 2.5rem);"
+			>
+				Podívejte se dovnitř
+			</h2>
+			<a
+				href="/galerie/"
+				class="group inline-flex items-center gap-3 font-sans text-sm font-medium uppercase tracking-[0.15em] text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent)]"
+			>
+				Celá galerie
+				<span
+					class="inline-block h-px w-10 bg-current transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:w-16"
+				></span>
+			</a>
+		</div>
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each aboutImages as image (image.src)}
 				<div
@@ -88,38 +102,20 @@
 	</div>
 </section>
 
-<!-- Vybavení -->
+<!-- Vybavení (sdílená komponenta = stejný pattern jako Home) -->
 <section class="bg-[var(--color-background)] py-[var(--spacing-section)]">
 	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
-		<h2
-			class="mb-12 max-w-2xl font-serif font-light text-[var(--color-foreground)]"
-			style="font-size: clamp(1.75rem, 4vw, 2.5rem);"
-		>
-			Vybavení chaty
-		</h2>
-		<dl class="grid grid-cols-1 gap-x-14 gap-y-10 sm:grid-cols-2">
-			{#each amenities as amenity (amenity.title)}
-				<div class="group flex gap-5">
-					<div
-						class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] ring-1 ring-[var(--color-border)] transition-colors group-hover:ring-[var(--color-accent)]"
-					>
-						<Icon
-							icon={amenity.icon}
-							class="h-5 w-5 text-[var(--color-accent)]"
-							aria-hidden="true"
-						/>
-					</div>
-					<div>
-						<dt class="font-serif text-xl font-light leading-tight text-[var(--color-foreground)]">
-							{amenity.title}
-						</dt>
-						<dd class="mt-1.5 font-sans text-sm leading-relaxed text-[var(--color-muted)]">
-							{amenity.description}
-						</dd>
-					</div>
-				</div>
-			{/each}
-		</dl>
+		<div class="mb-16 max-w-2xl">
+			<p class="label text-[var(--color-accent-text)]">Vybavení</p>
+			<h2
+				class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]"
+				style="font-size: clamp(2.25rem, 5vw, 3.5rem);"
+			>
+				Vše pro klidný pobyt
+			</h2>
+		</div>
+
+		<AmenityList items={amenities} columns={2} />
 
 		<div class="mt-12">
 			<a
@@ -128,6 +124,59 @@
 			>
 				Rezervovat termín
 			</a>
+		</div>
+	</div>
+</section>
+
+<!-- Majitel -->
+<section
+	class="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-[var(--spacing-section)]"
+>
+	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
+		<div class="grid items-center gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
+			<div>
+				<p class="label text-[var(--color-accent-text)]">Majitel</p>
+				<h2
+					class="mt-6 font-serif font-light leading-[1.1] text-[var(--color-foreground)]"
+					style="font-size: clamp(1.75rem, 4vw, 2.5rem);"
+				>
+					{cabin.manager.name}
+				</h2>
+				<p class="mt-2 font-sans text-sm text-[var(--color-muted)]">{cabin.manager.role}</p>
+			</div>
+			<div class="space-y-6">
+				<p class="font-sans text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
+					{cabin.manager.bio}
+				</p>
+				<dl class="flex flex-wrap gap-x-10 gap-y-4 border-t border-[var(--color-border)] pt-6">
+					<div class="flex items-center gap-3">
+						<Icon
+							icon="tabler:phone"
+							class="h-5 w-5 text-[var(--color-accent)]"
+							aria-hidden="true"
+						/>
+						<a
+							href={`tel:${cabin.manager.phone.replace(/\s/g, '')}`}
+							class="font-sans text-base text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent)]"
+						>
+							{cabin.manager.phone}
+						</a>
+					</div>
+					<div class="flex items-center gap-3">
+						<Icon
+							icon="tabler:mail"
+							class="h-5 w-5 text-[var(--color-accent)]"
+							aria-hidden="true"
+						/>
+						<a
+							href={`mailto:${cabin.manager.email}`}
+							class="font-sans text-base text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent)]"
+						>
+							{cabin.manager.email}
+						</a>
+					</div>
+				</dl>
+			</div>
 		</div>
 	</div>
 </section>
