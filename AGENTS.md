@@ -74,11 +74,11 @@ SvelteKit routes (staticky prerenderované)
 Web je **převážně statický** (SSG přes `adapter-static`, bez DB). Veškerý obsah (vybavení,
 ceník, okolí, FAQ, fotky) žije jako typovaná data v `src/lib/content/`, aby byl jediný zdroj
 pravdy a snadno editovatelný. Jediná dynamická část je rezervační/kontaktní formulář (form
-action → e-mail přes Resend správci).
+action → e-mail přes Resend majiteli).
 
 **Rozsah rezervace (schváleno):** dotaz + ceník, nikoliv plný booking systém. Žádný živý
 kalendář obsazenosti, žádná online platba v této fázi. Cesta: návštěvník vidí ceník → vyplní
-rezervační dotaz → e-mail správci, který ručně potvrdí. Platební brána + živý kalendář jsou
+rezervační dotaz → e-mail majiteli, který ručně potvrdí. Platební brána + živý kalendář jsou
 **backlog** — architektura by neměla blokovat jejich přidání později, ale nezavádí DB teď.
 
 ### Architektura: multi-page
@@ -88,11 +88,11 @@ src/routes/
   +layout.svelte        # globální shell: Header, Footer, fonty, SEO defaults
   +layout.ts            # prerender = true, i18n setup
   +page.svelte          # Home (hero, o chatě, galerie preview, okolí preview, ceník preview, CTA)
-  /o-chate/             # O chatě — kapacita, dispozice, vybavení, areál Bohemaland, správce
+  /o-chate/             # O chatě — kapacita, dispozice, vybavení, areál Bohemaland, majitel
   /galerie/             # Fotogalerie — kategorie, slideshow, lazy-load
   /okoli/               # Okolí — tipy na výlety (Biskupská kupa, Rejvíz, lyžování, cyklo)
   /rezervace/           # Rezervace — ceník + formulář (dotaz, ne booking)
-  /kontakt/             # Kontakt — správce, adresa, mapa, krátký formulář
+  /kontakt/             # Kontakt — majitel, adresa, mapa, krátký formulář
 ```
 
 ### i18n (Wuchale)
@@ -119,36 +119,39 @@ src/
     galerie/+page.svelte
     okoli/+page.svelte
     rezervace/+page.svelte
-    rezervace/+page.server.ts   # form action: rezervační dotaz → Resend → e-mail správci
+    rezervace/+page.server.ts   # form action: rezervační dotaz → Resend → e-mail majiteli
     kontakt/+page.svelte
     kontakt/+page.server.ts     # form action: krátký kontaktní dotaz
   app.css              # Tailwind v4 vstup + design tokeny (@theme, OKLCH CSS custom properties)
   app.html
 static/
   img/                 # optimalizované obrázky (zdroj: assets/) — AVIF/WebP, landscape
-  fonts/               # Hanken Grotesk přes Fontsource (self-hosted)
 assets/                # ZDROJOVÉ materiály (fotky/video) — NE v buildu, viz Materiály
+# Pozn.: fonty (Spectral, Hanken Grotesk Variable) se loadují přes @fontsource npm balíčky
+# v src/app.css (@import), ne ze složky static/.
 ```
 
 ---
 
 ## Design & Tokeny (LOCKED)
 
-Vizuální směr je zachycen v `DESIGN.md` („The Quiet Lodge"). Klíčové zásady:
+Vizuální směr je zachycen v `DESIGN.md` („Warm Lodge Luxury"). Klíčové zásady:
 
 - **Jediný zdroj tokenů:** `src/app.css` přes Tailwind v4 `@theme` + OKLCH CSS custom
   properties. Všechny barvy, fonty, spacing, radius a motion pocházejí odsud. Tokeny se
-  strukturuji jako CSS custom properties (`--color-bg`, `--color-primary`, …), aby byl
-  dark mode drop-in bez refaktoru později (light only v této fázi).
+  strukturuji jako CSS custom properties (`--color-background`, `--color-accent`, …), aby
+  byl dark mode drop-in bez refaktoru později (light only v této fázi).
 - **Žádné hardcoded hodnoty** v komponentách — žádné `#1a2b3c`, žádné `bg-slate-800`.
-  Používat **sémantické tokeny** (`bg-background`, `text-foreground`, `bg-primary`,
+  Používat **sémantické tokeny** (`bg-background`, `text-foreground`, `bg-accent`,
   `text-muted`, `border-border`, …).
-- **Typografie:** single sans rod **Hanken Grotesk** (warm humanist), committed váhový
-  kontrast (300 display vs 500 body). Žádné serif/sans míchání, žádné reflex fonty
-  (Fraunces/Cormorant/Inter). Detail hierarchie v `DESIGN.md` §3.
-- **Barvy:** Restrained — pure white bg (`oklch(1.000 0.000 0)`), deep sage primary
-  (`oklch(0.50 0.085 125)`, Bohemaland forest), warm clay accent (`oklch(0.45 0.11 45)`).
-  Plná paleta + named rules v `DESIGN.md` §2.
+- **Typografie:** serif+sans pair — **Spectral** (light serif, display h1–h3) + **Hanken
+  Grotesk** (warm humanist sans, body a labels). Serif display váha výhradně 300 (light) —
+  hierarchie přes velikost a serif vs sans kontrast, ne váhu. Detail hierarchie v
+  `DESIGN.md` §3.
+- **Barvy:** Warm Lodge — teplý krém bg (`oklch(0.92 0.012 75)`), gold accent
+  (`oklch(0.72 0.12 75)`), espresso foreground (`oklch(0.22 0.015 55)`). Gold pro text na
+  light bg vždy přes `--color-accent-text` (WCAG AA). Plná paleta + named rules v
+  `DESIGN.md` §2.
 - **Responsivita:** mobile-first. Mobil = primární breakpoint. Touch-friendly cíle (min 44px).
   **Fotky jsou 100% landscape** (47 fotek, žádné vertikální) — design pro landscape hero.
 - **Fotky jsou hrdinou:** velké, plné kvality, responzivní, s lazy-load a blur placeholder.
@@ -275,11 +278,11 @@ Držet zásadu LEAN: žádné překlady, dokud o ně není poptávka.
 
 **Před prací na designu vždy čti:**
 
-| Soubor                    | Co obsahuje                                                                                                               | Kdy číst                               |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| `PRODUCT.md`              | Strategický kontext: register (brand), users, purpose, brand personality, anti-references, design principles, a11y        | Před jakýmkoliv design rozhodnutím     |
-| `DESIGN.md`               | Vizuální systém: Creative North Star („The Quiet Lodge"), paleta (OKLCH), typografie, elevation, named rules, Do's/Don'ts | Před psaním jakéhokoliv CSS/komponenty |
-| `.impeccable/config.json` | Konfigurace design detector hooku (zapnuto)                                                                               | —                                      |
+| Soubor                    | Co obsahuje                                                                                                                 | Kdy číst                               |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| `PRODUCT.md`              | Strategický kontext: register (brand), users, purpose, brand personality, anti-references, design principles, a11y          | Před jakýmkoliv design rozhodnutím     |
+| `DESIGN.md`               | Vizuální systém: Creative North Star („Warm Lodge Luxury"), paleta (OKLCH), typografie, elevation, named rules, Do's/Don'ts | Před psaním jakéhokoliv CSS/komponenty |
+| `.impeccable/config.json` | Konfigurace design detector hooku (zapnuto)                                                                                 | —                                      |
 
 Oba soubory vytvořil `/impeccable init` a udržují se aktuální. Po implementaci komponent spusť
 `/impeccable document` v scan módu, aby DESIGN.md zachytil reálné tokeny a komponenty
@@ -289,8 +292,8 @@ Oba soubory vytvořil `/impeccable init` a udržují se aktuální. Po implement
 **Shrnutí brand rozhodnutí:** register = brand (design IS produkt); publikum = rodiny,
 skupiny, páry, turisté (CZ + zahraniční); tón = premium/designový; reference = hospitality
 premium + outdoor lifestyle; anti-ref = levné ubytováky, AI slop, agresivní marketing,
-klišé horské chaty; a11y = WCAG 2.2 AA; paleta = pure white + hluboká sage (≤10%) + warm
-clay accent; typografie = serif display + sans body; motion = restrained.
+klišé horské chaty; a11y = WCAG 2.2 AA; paleta = teplý krém + espresso + gold accent;
+typografie = serif display (Spectral) + sans body (Hanken Grotesk); motion = restrained.
 
 ---
 
@@ -312,8 +315,8 @@ komplementárními vrstvami skillů. Každá řeší jiný problém:
 ### Impeccable — regist a absolutní zákazy
 
 Tento web patří do **brand registru** (marketing/landing → design JE produkt). Při každém
-`/impeccable` příkazu skill nejprve načte `reference/brand.md` a projektové kontexty
-(`PRODUCT.md`, `DESIGN.md` v rootu — vytvoří je `/impeccable init` respektive `shape`).
+`/impeccable` příkazu skill nejprve načte projektové kontexty (`PRODUCT.md`, `DESIGN.md`
+v rootu — vytvoří je `/impeccable init` respektive `shape`).
 
 **Absolutní zákazy (AI slop tells)** — tyto patterny se v projektu nikdy nesmí objevit
 (plný seznam v `impeccable/SKILL.md`, sekce _Absolute bans_):
@@ -324,10 +327,14 @@ Tento web patří do **brand registru** (marketing/landing → design JE produkt
 - „Eyebrow" nad každou sekcí (malé caps s širokým trackingem „O NÁS" / „CENÍK").
 - Číslované markery `01 · 02 · 03` jako default scaffolding (jen u reálné sekvence).
 - Identické kartové gridy (icon + heading + text donekonečna).
-- Krémová/sand/paper bg jako „teplá defaulta 2026" (OKLCH L 0.84–0.97, C<0.06, hue 40–100).
 - Hero-metric šablona (velké číslo + malý label + gradient akcent).
 - Sketch/hand-drawn SVG jako fallback.
 - `repeating-linear-gradient` diagonální pruhy.
+
+> **Výjimka — teplé krémové pozadí.** Tento web záměrně používá warm-tinted krém
+> (`oklch(0.92 0.012 75)`) jako signature Warm Lodge Luxury surface — není to „AI defaulta",
+> ale záměrné brand rozhodnutí. Krém zde povolen je (viz `DESIGN.md` §2, The Warm Surface
+> Rule). Obecný AI-slop ban krémového bg se v tomto projektu nepoužije.
 
 **Kontrastní pravidlo:** body text ≥4.5:1, placeholder ≥4.5:1 (ne muted gray), velký text ≥3:1.
 Nejčastější selhání: „elegantní" světlešedý body text na tin-tovaném pozadí.
@@ -356,9 +363,10 @@ init   →  shape   →  craft (stavět sekce)  →  critique  →
 
 1. **Začni `shape`, ne `craft`.** Tón chaty (luxusní vs. rodinný vs. úsporný), cílové
    publikum a klíčové selling pointy se musejí rozhodnout dříve, než se píše kód.
-2. **`palette.mjs` pro brand seed.** Projekt je greenfield — brand barva (akcent) se
-   vygeneruje přes Impeccable palette generator a zkompletuje paleta (bg/surface/ink/
-   accent/muted) v OKLCH. Teplá horská paleta, ale **ne krémová AI defaulta**.
+2. **`palette.mjs` pro brand seed.** Brand barva (gold accent `oklch(0.72 0.12 75)`) je
+   záměrně zvolená Warm Lodge Luxury signature. Kompletní paleta (bg/surface/ink/
+   accent/muted) žije v OKLCH v `src/app.css`. Teplá horská paleta — krém + espresso + zlato
+   je záměrný brand rozhodnutí (viz `DESIGN.md` §2), nikoliv AI defaulta.
 3. **Fotky jsou hrdinou.** Web prodává atmosféru chaty — Impeccable `delight` a `animate`
    se použijí, aby galerie měla osobnost, ale `optimize` zajistí, že 47 fotek nezabije LCP.
 4. **Žádný AI slop.** Každá sekce po `craft` projde `critique` + `audit`.„AI made that"
