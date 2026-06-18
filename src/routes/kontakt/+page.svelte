@@ -110,6 +110,22 @@
 						</div>
 					</dl>
 				</div>
+
+				<!-- Mapa — Google Maps embed (Bohemaland, Zlaté Hory) -->
+				<div
+					class="mt-8 overflow-hidden rounded-[var(--radius-md)] ring-1 ring-[var(--color-border)] shadow-[var(--shadow-soft)]"
+				>
+					<iframe
+						title={`Mapa — poloha chaty ${cabin.name} v areálu ${cabin.area}`}
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.4460877431607!2d17.38959177730706!3d50.24625227155391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711931a58b43935%3A0x12724519d9ea2c9!2sBohemaland!5e0!3m2!1scs!2scz!4v1781777818629!5m2!1scs!2scz"
+						width="600"
+						height="450"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+						allowfullscreen
+						class="block h-[300px] w-full border-0"
+					></iframe>
+				</div>
 			</div>
 
 			<!-- Krátký formulář -->
@@ -212,26 +228,6 @@
 					</form>
 				{/if}
 			</div>
-		</div>
-	</div>
-</section>
-
-<!-- Mapa — Google Maps embed (Bohemaland, Zlaté Hory) -->
-<section class="bg-[var(--color-background)] pb-[var(--spacing-section)]">
-	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
-		<div
-			class="overflow-hidden rounded-[var(--radius-lg)] ring-1 ring-[var(--color-border)] shadow-[var(--shadow-soft)]"
-		>
-			<iframe
-				title={`Mapa — poloha chaty ${cabin.name} v areálu ${cabin.area}`}
-				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.4460877431607!2d17.38959177730706!3d50.24625227155391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711931a58b43935%3A0x12724519d9ea2c9!2sBohemaland!5e0!3m2!1scs!2scz!4v1781777818629!5m2!1scs!2scz"
-				width="600"
-				height="450"
-				loading="lazy"
-				referrerpolicy="no-referrer-when-downgrade"
-				allowfullscreen
-				class="block h-[400px] w-full border-0 md:h-[480px]"
-			></iframe>
 		</div>
 	</div>
 </section>
