@@ -110,7 +110,7 @@
 						/>
 					</div>
 					<div>
-						<dt class="font-serif text-lg font-normal text-[var(--color-foreground)]">
+						<dt class="font-serif text-xl font-light leading-tight text-[var(--color-foreground)]">
 							{amenity.title}
 						</dt>
 						<dd class="mt-1.5 font-sans text-sm leading-relaxed text-[var(--color-muted)]">

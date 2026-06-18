@@ -16,7 +16,7 @@ export const amenities: Amenity[] = [
 		description: 'Finská sauna pro zahřátí po zimním dnu na horách.'
 	},
 	{
-		icon: 'tabler:utensils',
+		icon: 'tabler:tools-kitchen',
 		title: 'Plně vybavená kuchyň',
 		description: 'Vše pro vaření — od pánví po rychlovarnou konvici.'
 	},
@@ -26,7 +26,7 @@ export const amenities: Amenity[] = [
 		description: 'Rychlé připojení pro ty, co přece jen potřebují zůstat ve spojení.'
 	},
 	{
-		icon: 'tabler:barbecue',
+		icon: 'tabler:grill',
 		title: 'Zahrada a gril',
 		description: 'Soukromá zahrada s venkovním grilem pro letní večery.'
 	},
