@@ -90,12 +90,15 @@
 				<div
 					class="overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-background)] shadow-[var(--shadow-soft)]"
 				>
-					<img
-						src={image.src}
-						alt={image.alt}
-						loading="lazy"
-						class="aspect-[4/3] w-full object-cover"
-					/>
+					<picture>
+						<source type="image/avif" srcset={image.src} />
+						<img
+							src={image.src.replace('.avif', '.webp')}
+							alt={image.alt}
+							loading="lazy"
+							class="aspect-[4/3] w-full object-cover"
+						/>
+					</picture>
 				</div>
 			{/each}
 		</div>

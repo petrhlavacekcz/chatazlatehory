@@ -47,15 +47,22 @@ export type FieldErrors<T> = Partial<Record<keyof T, string>>;
  * Endpoint přijímá JSON, odesílá e-mail majiteli (cabin.manager.email).
  */
 export async function submitInquiry(data: InquiryValues): Promise<{ ok: boolean }> {
-	// Místo skutečného endpointu zatím simulujeme úspěch.
-	// Při nasazení: return fetch('/api/inquiry', { method: 'POST', body: JSON.stringify(data) });
-	console.info('[inquiry] TODO: odeslat na serverless endpoint', data);
-	await new Promise((r) => setTimeout(r, 600));
-	return { ok: true };
+	try {
+		const res = await fetch('/api/rezervace', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data)
+		});
+		return { ok: res.ok };
+	} catch {
+		return { ok: false };
+	}
 }
 
 export async function submitContact(data: ContactValues): Promise<{ ok: boolean }> {
-	console.info('[contact] TODO: odeslat na serverless endpoint', data);
+	// TODO: před deployem napojit na Web3Forms / Formspree / Resend.
+	// Endpoint odesílá potvrzení na cabin.manager.email (tom.pavela@seznam.cz).
+	console.info('[contact] TODO: odeslat e-mail', data);
 	await new Promise((r) => setTimeout(r, 600));
 	return { ok: true };
 }

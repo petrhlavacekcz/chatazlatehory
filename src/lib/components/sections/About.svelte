@@ -46,12 +46,15 @@
 			<!-- Fotka s floating stat -->
 			<div class="relative order-2 lg:pl-8">
 				<div class="overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-hover)]">
-					<img
-						src={aboutImage.src}
-						alt={aboutImage.alt}
-						loading="lazy"
-						class="aspect-[4/5] w-full object-cover"
-					/>
+					<picture>
+						<source type="image/avif" srcset={aboutImage.src} />
+						<img
+							src={aboutImage.src.replace('.avif', '.webp')}
+							alt={aboutImage.alt}
+							loading="lazy"
+							class="aspect-[4/5] w-full object-cover"
+						/>
+					</picture>
 				</div>
 				<div
 					class="absolute -bottom-8 left-4 rounded-[var(--radius-md)] bg-[var(--color-dark)] px-7 py-5 shadow-[var(--shadow-hover)] sm:left-8 sm:px-8 sm:py-6 lg:-left-12"

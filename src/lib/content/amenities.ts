@@ -11,11 +11,6 @@ export const amenities: Amenity[] = [
 		description: 'Praskající oheň pro podvečerní ticho, dřevo k dispozici.'
 	},
 	{
-		icon: 'tabler:bath',
-		title: 'Sauna',
-		description: 'Finská sauna pro zahřátí po zimním dnu na horách.'
-	},
-	{
 		icon: 'tabler:tools-kitchen',
 		title: 'Plně vybavená kuchyň',
 		description: 'Vše pro vaření — od pánví po rychlovarnou konvici.'

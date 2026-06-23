@@ -56,6 +56,6 @@ export const trips: Trip[] = [
 		title: 'Muzeum zlata',
 		description: 'Expozice o hornické historii Zlatých Hor s možností prohlídky starých štol.',
 		distance: '2 km',
-		href: 'https://www.zlatehory.cz/cs/tourism/basic/25-muzeum-zlata'
+		href: 'https://www.zlatehory.cz/turistika/kultura-a-pamatky'
 	}
 ];

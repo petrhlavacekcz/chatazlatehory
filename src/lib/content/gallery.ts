@@ -4,7 +4,7 @@
  *
  * Kategorie (sjednocené dle požadavku):
  * - `exterior` — exteriér chaty + areál Bohemaland + okolní krajina (vše venku)
- * - `interior` — interiér chaty (obývák, kuchyň, jídelna, ložnice, sauna)
+ * - `interior` — interiér chaty (obývák, kuchyň, jídelna, ložnice)
  *
  * Koupelna/toaleta (fotky 10-13) je VYŘAZENA z galerie — není atraktivní pro prezentaci.
  *

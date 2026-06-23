@@ -94,8 +94,20 @@
 						</div>
 					{/each}
 				</div>
+				<!-- Check-in / Check-out -->
+				<div class="mt-6 flex gap-6">
+					<div class="flex items-center gap-2 text-sm text-[var(--color-muted)]">
+						<Icon icon="tabler:clock-check" class="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+						<span>Příjezd od <strong class="text-[var(--color-foreground)]">{cabin.checkIn}</strong></span>
+					</div>
+					<div class="flex items-center gap-2 text-sm text-[var(--color-muted)]">
+						<Icon icon="tabler:clock-x" class="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+						<span>Odjezd do <strong class="text-[var(--color-foreground)]">{cabin.checkOut}</strong></span>
+					</div>
+				</div>
+
 				{#if pricingNotes.length}
-					<ul class="mt-8 space-y-2">
+					<ul class="mt-6 space-y-2">
 						{#each pricingNotes as note (note)}
 							<li class="flex items-start gap-2 text-sm text-[var(--color-muted)]">
 								<Icon
@@ -108,6 +120,12 @@
 						{/each}
 					</ul>
 				{/if}
+
+				<!-- Obsazený termín -->
+				<p class="mt-6 border-l-2 border-[var(--color-accent)] pl-4 text-sm leading-relaxed text-[var(--color-muted)]">
+					Pokud je vámi zvolený termín obsazený, prosím zavolejte nám — rádi vymyslíme jiný termín
+					nebo jinou chatku v areálu k vaší spokojenosti.
+				</p>
 			</div>
 
 			<!-- Formulář -->

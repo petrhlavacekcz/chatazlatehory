@@ -10,7 +10,11 @@
 			title: 'Večery u krbu',
 			text: 'Praskající oheň a ticho lesa za oknem.'
 		},
-		{ icon: 'tabler:bath', title: 'Sauna po horách', text: 'Zahřátí po zimním dni na sjezdovce.' },
+		{
+			icon: 'tabler:shower',
+			title: 'Komfort a teplo',
+			text: 'Útulné zázemí po celý den — sprcha, teplo, ložní prádlo v ceně.'
+		},
 		{
 			icon: 'tabler:trees',
 			title: 'Soukromí v přírodě',
@@ -23,13 +27,16 @@
 	Experience — tmavý kontrastní panel. Drama, střídání tónů.
 -->
 <section class="relative overflow-hidden bg-[var(--color-dark-deep)] py-[var(--spacing-section)]">
-	<img
-		src={bgImage.src}
-		alt=""
-		aria-hidden="true"
-		loading="lazy"
-		class="absolute inset-0 h-full w-full object-cover opacity-20"
-	/>
+	<picture>
+		<source type="image/avif" srcset={bgImage.src} />
+		<img
+			src={bgImage.src.replace('.avif', '.webp')}
+			alt=""
+			aria-hidden="true"
+			loading="lazy"
+			class="absolute inset-0 h-full w-full object-cover opacity-20"
+		/>
+	</picture>
 	<div
 		class="absolute inset-0 bg-gradient-to-b from-[var(--color-dark-deep)] via-[var(--color-dark-deep)]/85 to-[var(--color-dark-deep)]"
 	></div>

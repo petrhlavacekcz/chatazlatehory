@@ -15,7 +15,7 @@
 >
 	<video
 		class="relative block aspect-video w-full object-cover object-center md:absolute md:inset-0 md:h-full md:w-full md:aspect-auto"
-		poster="/img/gallery/1.avif"
+		poster="/img/gallery/1.webp"
 		autoplay
 		muted
 		loop

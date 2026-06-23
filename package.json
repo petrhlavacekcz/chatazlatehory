@@ -11,13 +11,16 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"webp": "node scripts/generate-webp.mjs",
+		"db:init": "node scripts/init-db.mjs"
 	},
 	"devDependencies": {
 		"@fontsource-variable/hanken-grotesk": "^5.2.5",
 		"@fontsource/spectral": "^5.2.8",
 		"@iconify-json/tabler": "^1.2.35",
 		"@iconify/svelte": "^5.0.1",
+		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-static": "^3.0.9",
 		"@sveltejs/enhanced-img": "^0.6.0",
 		"@sveltejs/kit": "^2.63.0",
@@ -28,6 +31,7 @@
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
 		"prettier-plugin-tailwindcss": "^0.8.0",
+		"sharp": "^0.35.2",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
 		"tailwind-merge": "^3.3.1",
@@ -37,6 +41,7 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
+		"@libsql/client": "^0.17.4",
 		"zod": "^4.0.0"
 	}
 }
