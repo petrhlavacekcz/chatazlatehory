@@ -39,5 +39,10 @@ export const amenities: Amenity[] = [
 		icon: 'tabler:wash-machine',
 		title: 'Pračka',
 		description: 'Pračka pro delší pobyty, ručníky a ložní prádlo v ceně.'
+	},
+	{
+		icon: 'tabler:bath',
+		title: 'Koupelna',
+		description: 'Sprchový kout, ručníky v ceně pobytu.'
 	}
 ];

@@ -17,85 +17,80 @@
 			</h2>
 		</div>
 
-		<div class="grid grid-cols-1 gap-5 md:grid-cols-3">
-			{#each pricing as tier (tier.id)}
-				<div
-					class={cn(
-						'flex flex-col rounded-[var(--radius-lg)] p-9 transition-all',
-						tier.highlight
-							? 'bg-[var(--color-dark)] shadow-[var(--shadow-hover)]'
-							: 'bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]'
-					)}
-				>
-					{#if tier.highlight}
-						<span
-							class="mb-6 inline-flex w-fit rounded-full bg-[var(--color-accent)] px-3 py-1 label !text-[0.6rem] text-[var(--color-accent-foreground)]"
-						>
-							Nejčastější
-						</span>
-					{/if}
-					<h3
+		<div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:items-start">
+			<div>
+				{#each pricing as tier (tier.id)}
+					<div
 						class={cn(
-							'label',
+							'flex flex-col rounded-[var(--radius-lg)] p-9 transition-all',
 							tier.highlight
-								? 'text-[var(--color-dark-foreground)]/60'
-								: 'text-[var(--color-muted)]'
+								? 'bg-[var(--color-dark)] shadow-[var(--shadow-hover)]'
+								: 'bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]'
 						)}
 					>
-						{tier.label}
-					</h3>
-					<div class="mt-5 flex items-baseline gap-1">
-						<span
+						<h3
 							class={cn(
-								'font-serif text-5xl font-light',
+								'label',
 								tier.highlight
-									? 'text-[var(--color-dark-foreground)]'
-									: 'text-[var(--color-foreground)]'
+									? 'text-[var(--color-dark-foreground)]/60'
+									: 'text-[var(--color-muted)]'
 							)}
 						>
-							{formatPrice(tier.amount)}
-						</span>
-					</div>
-					<p
-						class={cn(
-							'mt-3 font-sans text-sm',
-							tier.highlight
-								? 'text-[var(--color-dark-foreground)]/55'
-								: 'text-[var(--color-muted)]'
-						)}
-					>
-						{tier.period}
-					</p>
-					{#if tier.note}
+							{tier.label}
+						</h3>
+						<div class="mt-5 flex items-baseline gap-1">
+							<span
+								class={cn(
+									'font-serif text-5xl font-light',
+									tier.highlight
+										? 'text-[var(--color-dark-foreground)]'
+										: 'text-[var(--color-foreground)]'
+								)}
+							>
+								{formatPrice(tier.amount)}
+							</span>
+						</div>
 						<p
 							class={cn(
-								'mt-1 font-sans text-xs',
+								'mt-3 font-sans text-sm',
 								tier.highlight
-									? 'text-[var(--color-dark-foreground)]/40'
-									: 'text-[var(--color-muted)]/80'
+									? 'text-[var(--color-dark-foreground)]/55'
+									: 'text-[var(--color-muted)]'
 							)}
 						>
-							{tier.note}
+							{tier.period}
 						</p>
-					{/if}
-				</div>
-			{/each}
-		</div>
-
-		{#if pricingNotes.length}
-			<div class="mt-12 grid gap-3 border-t border-[var(--color-border)] pt-10 sm:grid-cols-2">
-				{#each pricingNotes as note (note)}
-					<p class="flex items-start gap-2 font-sans text-sm text-[var(--color-muted)]">
-						<Icon
-							icon="tabler:check"
-							class="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]"
-							aria-hidden="true"
-						/>
-						{note}
-					</p>
+						{#if tier.note}
+							<p
+								class={cn(
+									'mt-1 font-sans text-xs',
+									tier.highlight
+										? 'text-[var(--color-dark-foreground)]/40'
+										: 'text-[var(--color-muted)]/80'
+								)}
+							>
+								{tier.note}
+							</p>
+						{/if}
+					</div>
 				{/each}
 			</div>
-		{/if}
+
+			{#if pricingNotes.length}
+				<div class="grid gap-4 sm:grid-cols-2 lg:pt-3">
+					{#each pricingNotes as note (note)}
+						<p class="flex items-start gap-2 font-sans text-sm text-[var(--color-muted)]">
+							<Icon
+								icon="tabler:check"
+								class="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]"
+								aria-hidden="true"
+							/>
+							{note}
+						</p>
+					{/each}
+				</div>
+			{/if}
+		</div>
 
 		<div class="mt-12">
 			<a

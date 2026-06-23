@@ -11,7 +11,7 @@
 			text: 'Praskající oheň a ticho lesa za oknem.'
 		},
 		{
-			icon: 'tabler:shower',
+			icon: 'tabler:home-heart',
 			title: 'Komfort a teplo',
 			text: 'Útulné zázemí po celý den — sprcha, teplo, ložní prádlo v ceně.'
 		},
