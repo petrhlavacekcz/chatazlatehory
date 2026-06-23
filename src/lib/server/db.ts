@@ -5,8 +5,12 @@ let _db: Client | null = null;
 
 export function getDb(): Client {
 	if (!_db) {
+		const url = env.TURSO_DATABASE_URL;
+		if (!url) {
+			throw new Error('TURSO_DATABASE_URL není nastavena.');
+		}
 		_db = createClient({
-			url: env.TURSO_DATABASE_URL,
+			url,
 			authToken: env.TURSO_AUTH_TOKEN
 		});
 	}
