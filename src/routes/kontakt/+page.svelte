@@ -158,6 +158,9 @@
 								type="text"
 								value={values.name ?? ''}
 								required
+								autocomplete="name"
+								autocapitalize="words"
+								enterkeyhint="next"
 								class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
 								placeholder="Jan Novák"
 								aria-invalid={!!hasError('name')}
@@ -179,6 +182,12 @@
 								type="email"
 								value={values.email ?? ''}
 								required
+								inputmode="email"
+								autocomplete="email"
+								autocapitalize="none"
+								autocorrect="off"
+								spellcheck="false"
+								enterkeyhint="next"
 								class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
 								placeholder="jan@example.com"
 								aria-invalid={!!hasError('email')}

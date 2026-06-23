@@ -192,7 +192,7 @@
 			disabled={!canGoPrev}
 			aria-label="Předchozí měsíc"
 			class={cn(
-				'flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors',
+				'flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors sm:h-9 sm:w-9',
 				canGoPrev
 					? 'text-[var(--color-foreground)] hover:bg-[var(--color-surface)]'
 					: 'cursor-not-allowed text-[var(--color-muted)]/25'
@@ -213,7 +213,7 @@
 		<button
 			onclick={next}
 			aria-label="Následující měsíc"
-			class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-surface)]"
+			class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-surface)] sm:h-9 sm:w-9"
 		>
 			<Icon icon="tabler:chevron-right" class="h-5 w-5" />
 		</button>
@@ -250,7 +250,7 @@
 					<div class="grid grid-cols-7">
 						{#each getDays(m.year, m.month) as day}
 							{#if day === null}
-								<div class="h-9"></div>
+								<div class="h-10 sm:h-9"></div>
 							{:else}
 								{@const status = getStatus(day)}
 								{@const isPast = day < today}
@@ -274,7 +274,7 @@
 										: null}
 									onclick={interactive ? () => handleDayClick(day) : null}
 									class={cn(
-										'group relative flex h-9 w-full items-center justify-center',
+										'group relative flex h-10 w-full items-center justify-center sm:h-9',
 										interactive && 'cursor-pointer'
 									)}
 								>

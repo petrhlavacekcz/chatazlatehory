@@ -72,6 +72,44 @@
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		/* Brání iOS přeškálování textu po otočení a respektuje uživatelskou velikost. */
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+	}
+
+	/* ── Mobilní ergonomie formulářů ──────────────────────────── */
+	/* Min. 16px na inputech brání auto-zoomu při fokusu na iOS Safari. */
+	input,
+	textarea,
+	select {
+		font-size: max(16px, 1rem);
+	}
+
+	/* Sjednocené vykreslení date inputů napříč iOS / Androidem. */
+	input[type='date'] {
+		-webkit-appearance: none;
+		appearance: none;
+		min-height: 3rem; /* drží stejnou výšku jako ostatní pole (px-4 py-3) */
+	}
+
+	/* iOS centruje hodnotu data na střed pole — zarovnáme vlevo jako text inputy. */
+	input[type='date']::-webkit-date-and-time-value {
+		text-align: left;
+		margin: 0;
+	}
+
+	input[type='date']::-webkit-calendar-picker-indicator {
+		opacity: 0.55;
+	}
+
+	/* Bez šedého problikávání při tapnutí — vlastní focus ring zůstává. */
+	a,
+	button,
+	input,
+	textarea,
+	select,
+	[role='button'] {
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	body {

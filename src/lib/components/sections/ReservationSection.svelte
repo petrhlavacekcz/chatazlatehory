@@ -74,12 +74,14 @@
 		<!-- Kalendář (klikací výběr termínu) -->
 		<AvailabilityCalendar months={2} selectable bind:selectedFrom bind:selectedTo />
 
-		<div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
+		<div
+			class="mt-10 grid gap-10 sm:mt-12 sm:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16"
+		>
 			<!-- Ceník (stručně) -->
 			<div>
 				<h3 class="label text-[var(--color-muted)]">Ceník</h3>
 				<div
-					class="mt-5 rounded-[var(--radius-lg)] bg-[var(--color-dark)] p-9 shadow-[var(--shadow-hover)]"
+					class="mt-5 rounded-[var(--radius-lg)] bg-[var(--color-dark)] p-7 shadow-[var(--shadow-hover)] sm:p-9"
 				>
 					<p class="label text-[var(--color-dark-foreground)]/60">{tier.label}</p>
 					<p class="mt-4 font-serif text-5xl font-light text-[var(--color-dark-foreground)]">
@@ -172,6 +174,9 @@
 								type="text"
 								value={values.name ?? ''}
 								required
+								autocomplete="name"
+								autocapitalize="words"
+								enterkeyhint="next"
 								class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
 								placeholder="Jan Novák"
 								aria-invalid={!!hasError('name')}
@@ -195,6 +200,12 @@
 									type="email"
 									value={values.email ?? ''}
 									required
+									inputmode="email"
+									autocomplete="email"
+									autocapitalize="none"
+									autocorrect="off"
+									spellcheck="false"
+									enterkeyhint="next"
 									class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
 									placeholder="jan@example.com"
 									aria-invalid={!!hasError('email')}
@@ -214,6 +225,9 @@
 									name="phone"
 									type="tel"
 									value={values.phone ?? ''}
+									inputmode="tel"
+									autocomplete="tel"
+									enterkeyhint="next"
 									class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
 									placeholder="+420 ..."
 								/>
@@ -275,6 +289,8 @@
 								min="1"
 								max={cabin.capacity.guests}
 								value={values.guests ?? ''}
+								inputmode="numeric"
+								enterkeyhint="done"
 								class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors focus:border-[var(--color-accent)] focus:outline-none"
 								placeholder={`max. ${cabin.capacity.guests}`}
 							/>
