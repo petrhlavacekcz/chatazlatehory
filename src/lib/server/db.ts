@@ -1,13 +1,20 @@
-import { createClient } from '@libsql/client';
-import { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } from '$env/static/private';
+import { createClient, type Client } from '@libsql/client';
+import { env } from '$env/dynamic/private';
 
-export const db = createClient({
-	url: TURSO_DATABASE_URL,
-	authToken: TURSO_AUTH_TOKEN
-});
+let _db: Client | null = null;
+
+export function getDb(): Client {
+	if (!_db) {
+		_db = createClient({
+			url: env.TURSO_DATABASE_URL,
+			authToken: env.TURSO_AUTH_TOKEN
+		});
+	}
+	return _db;
+}
 
 export async function initDb() {
-	await db.execute(`
+	await getDb().execute(`
 		CREATE TABLE IF NOT EXISTS reservations (
 			id        TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
 			name      TEXT NOT NULL,

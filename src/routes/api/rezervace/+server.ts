@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/server/db';
+import { getDb } from '$lib/server/db';
 import { inquirySchema } from '$lib/utils/forms';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -19,7 +19,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const { name, email, phone, dateFrom, dateTo, guests, message } = parsed.data;
 
 	try {
-		await db.execute({
+		await getDb().execute({
 			sql: `INSERT INTO reservations (name, email, phone, date_from, date_to, guests, message)
 			      VALUES (?, ?, ?, ?, ?, ?, ?)`,
 			args: [name, email, phone ?? null, dateFrom, dateTo, guests ?? null, message ?? null]
