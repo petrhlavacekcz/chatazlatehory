@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/server/db';
+import { getDb } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
 
 function checkAuth(request: Request): boolean {
@@ -18,7 +18,7 @@ export const GET: RequestHandler = async ({ request, url }) => {
 			: 'SELECT * FROM reservations WHERE status = ? ORDER BY created_at DESC';
 	const args = status === 'all' ? [] : [status];
 
-	const result = await db.execute({ sql, args });
+	const result = await getDb().execute({ sql, args });
 	return json(result.rows);
 };
 
@@ -28,7 +28,7 @@ export const PATCH: RequestHandler = async ({ request }) => {
 	const { id, status, note } = await request.json();
 	if (!id) return json({ error: 'Chybí id' }, { status: 400 });
 
-	await db.execute({
+	await getDb().execute({
 		sql: 'UPDATE reservations SET status = COALESCE(?, status), note = COALESCE(?, note) WHERE id = ?',
 		args: [status ?? null, note ?? null, id]
 	});

@@ -9,6 +9,7 @@
 		type InquiryValues
 	} from '$lib/utils/forms';
 	import Icon from '@iconify/svelte';
+	import AvailabilityCalendar from '$lib/components/AvailabilityCalendar.svelte';
 
 	type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -64,9 +65,18 @@
 			Vyberte si termín a napište nám
 		</h1>
 		<p class="mt-6 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">
-			Nemáme online kalendář — obsazenost řešíme ručně. Vyplňte dotaz a my se do 24 hodin ozveme s
-			potvrzením a dalšími kroky.
+			Termín vyberte s ohledem na kalendář níže — obsazenost potvrdíme do 24 hodin.
 		</p>
+	</div>
+</section>
+
+<!-- Kalendář obsazenosti -->
+<section class="border-b border-[var(--color-border)] bg-[var(--color-surface)] py-12 md:py-16">
+	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
+		<h2 class="mb-8 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
+			Obsazenost
+		</h2>
+		<AvailabilityCalendar months={2} />
 	</div>
 </section>
 

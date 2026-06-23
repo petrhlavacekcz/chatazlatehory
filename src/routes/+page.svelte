@@ -8,6 +8,7 @@
 	import Amenities from '$lib/components/sections/Amenities.svelte';
 	import TripsPreview from '$lib/components/sections/TripsPreview.svelte';
 	import PricingPreview from '$lib/components/sections/PricingPreview.svelte';
+	import AvailabilitySection from '$lib/components/sections/AvailabilitySection.svelte';
 	import CallToAction from '$lib/components/sections/CallToAction.svelte';
 </script>
 
@@ -28,4 +29,5 @@
 <Amenities />
 <TripsPreview />
 <PricingPreview />
+<AvailabilitySection />
 <CallToAction />
