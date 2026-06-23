@@ -55,7 +55,7 @@
 
 			<div class="mt-10 flex flex-wrap items-center gap-4">
 				<a
-					href="/rezervace/"
+					href="/#rezervace"
 					class="inline-flex h-12 items-center justify-center rounded-full bg-[var(--color-accent)] px-8 font-sans text-sm font-medium tracking-wide text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)]"
 				>
 					Rezervovat termín

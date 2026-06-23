@@ -11,7 +11,6 @@ const routes = [
 	{ path: '/o-chate/', priority: '0.9', changefreq: 'monthly' },
 	{ path: '/galerie/', priority: '0.8', changefreq: 'monthly' },
 	{ path: '/okoli/', priority: '0.7', changefreq: 'monthly' },
-	{ path: '/rezervace/', priority: '0.9', changefreq: 'monthly' },
 	{ path: '/kontakt/', priority: '0.7', changefreq: 'monthly' }
 ];
 

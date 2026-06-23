@@ -87,11 +87,11 @@ rezervační dotaz → e-mail majiteli, který ručně potvrdí. Platební brán
 src/routes/
   +layout.svelte        # globální shell: Header, Footer, fonty, SEO defaults
   +layout.ts            # prerender = true, i18n setup
-  +page.svelte          # Home (hero, o chatě, galerie preview, okolí preview, ceník preview, CTA)
+  +page.svelte          # Home (hero, o chatě, galerie preview, okolí preview, rezervace: ceník + kalendář + formulář na #rezervace)
   /o-chate/             # O chatě — kapacita, dispozice, vybavení, areál Bohemaland, majitel
   /galerie/             # Fotogalerie — kategorie, slideshow, lazy-load
   /okoli/               # Okolí — tipy na výlety (Biskupská kupa, Rejvíz, lyžování, cyklo)
-  /rezervace/           # Rezervace — ceník + formulář (dotaz, ne booking)
+  /rezervace/           # 308 redirect → /#rezervace (rezervace je sekce na homepage)
   /kontakt/             # Kontakt — majitel, adresa, mapa, krátký formulář
 ```
 

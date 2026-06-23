@@ -7,9 +7,7 @@
 	import Experience from '$lib/components/sections/Experience.svelte';
 	import Amenities from '$lib/components/sections/Amenities.svelte';
 	import TripsPreview from '$lib/components/sections/TripsPreview.svelte';
-	import PricingPreview from '$lib/components/sections/PricingPreview.svelte';
-	import AvailabilitySection from '$lib/components/sections/AvailabilitySection.svelte';
-	import CallToAction from '$lib/components/sections/CallToAction.svelte';
+	import ReservationSection from '$lib/components/sections/ReservationSection.svelte';
 </script>
 
 <svelte:head>
@@ -20,7 +18,7 @@
 	/>
 </svelte:head>
 
-<!-- Story flow: hero → o chatě → video atmosféra → galerie → prožitek → vybavení → okolí → ceník → CTA -->
+<!-- Story flow: hero → o chatě → video atmosféra → galerie → prožitek → vybavení → okolí → rezervace (ceník + kalendář + formulář) -->
 <Hero />
 <About />
 <VideoAtmosphere />
@@ -28,6 +26,4 @@
 <Experience />
 <Amenities />
 <TripsPreview />
-<PricingPreview />
-<AvailabilitySection />
-<CallToAction />
+<ReservationSection />

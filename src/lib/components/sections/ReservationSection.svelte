@@ -17,6 +17,12 @@
 	let errors = $state<FieldErrors<InquiryValues>>({});
 	let values = $state<Partial<InquiryValues>>({});
 
+	// Termín řízený kalendářem — obousměrně propojený s date inputy ve formuláři.
+	let selectedFrom = $state<string | null>(null);
+	let selectedTo = $state<string | null>(null);
+
+	const tier = pricing[0];
+
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget as HTMLFormElement);
@@ -48,71 +54,66 @@
 	const hasError = (field: keyof InquiryValues) => errors[field];
 </script>
 
-<svelte:head>
-	<title>Rezervace a ceník · {cabin.name}</title>
-	<meta name="description" content={`Rezervační dotaz a ceník chaty ${cabin.name}.`} />
-</svelte:head>
+<section id="rezervace" class="scroll-mt-24 bg-[var(--color-surface)] py-[var(--spacing-section)]">
+	<div class="mx-auto max-w-7xl px-[var(--spacing-container)]">
+		<!-- Header -->
+		<div class="mb-12 max-w-2xl">
+			<p class="label text-[var(--color-accent-text)]">Rezervace</p>
+			<h2
+				class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-foreground)]"
+				style="font-size: clamp(2.25rem, 5vw, 3.5rem);"
+			>
+				Rezervujte si termín
+			</h2>
+			<p class="mt-4 font-sans text-base leading-relaxed text-[var(--color-muted)]">
+				Vyberte volný termín v kalendáři a odešlete nezávaznou poptávku — obsazenost potvrdíme
+				obvykle do 24 hodin.
+			</p>
+		</div>
 
-<section class="border-b border-[var(--color-border)] bg-[var(--color-background)]">
-	<div class="mx-auto max-w-6xl px-[var(--spacing-container)] py-16 md:py-24">
-		<p class="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
-			Rezervace
-		</p>
-		<h1
-			class="mt-4 max-w-3xl font-serif font-light tracking-[-0.02em] text-[var(--color-foreground)]"
-			style="font-size: clamp(2.25rem, 6vw, 3.5rem); line-height: 1.08;"
-		>
-			Vyberte si termín a napište nám
-		</h1>
-		<p class="mt-6 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">
-			Termín vyberte s ohledem na kalendář níže — obsazenost potvrdíme do 24 hodin.
-		</p>
-	</div>
-</section>
+		<!-- Kalendář (klikací výběr termínu) -->
+		<AvailabilityCalendar months={2} selectable bind:selectedFrom bind:selectedTo />
 
-<!-- Kalendář obsazenosti -->
-<section class="border-b border-[var(--color-border)] bg-[var(--color-surface)] py-12 md:py-16">
-	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
-		<h2 class="mb-8 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
-			Obsazenost
-		</h2>
-		<AvailabilityCalendar months={2} />
-	</div>
-</section>
-
-<section class="bg-[var(--color-background)] py-[var(--spacing-section)]">
-	<div class="mx-auto max-w-6xl px-[var(--spacing-container)]">
-		<div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-			<!-- Ceník -->
+		<div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
+			<!-- Ceník (stručně) -->
 			<div>
-				<h2 class="text-sm font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
-					Ceník
-				</h2>
-				<div class="mt-6 space-y-4">
-					{#each pricing as tier (tier.id)}
-						<div class="rounded-[var(--radius-md)] border border-[var(--color-border)] p-6">
-							<div class="flex items-baseline justify-between gap-4">
-								<h3 class="text-base font-medium text-[var(--color-foreground)]">{tier.label}</h3>
-								<span class="text-2xl font-light text-[var(--color-foreground)]"
-									>{formatPrice(tier.amount)}</span
-								>
-							</div>
-							<p class="mt-1 text-sm text-[var(--color-muted)]">{tier.period}</p>
-							{#if tier.note}
-								<p class="mt-1 text-xs text-[var(--color-muted)]/80">{tier.note}</p>
-							{/if}
-						</div>
-					{/each}
+				<h3 class="label text-[var(--color-muted)]">Ceník</h3>
+				<div
+					class="mt-5 rounded-[var(--radius-lg)] bg-[var(--color-dark)] p-9 shadow-[var(--shadow-hover)]"
+				>
+					<p class="label text-[var(--color-dark-foreground)]/60">{tier.label}</p>
+					<p class="mt-4 font-serif text-5xl font-light text-[var(--color-dark-foreground)]">
+						{formatPrice(tier.amount)}
+					</p>
+					<p class="mt-2 font-sans text-sm text-[var(--color-dark-foreground)]/55">{tier.period}</p>
+					{#if tier.note}
+						<p class="mt-1 font-sans text-xs text-[var(--color-dark-foreground)]/40">{tier.note}</p>
+					{/if}
 				</div>
+
 				<!-- Check-in / Check-out -->
 				<div class="mt-6 flex gap-6">
 					<div class="flex items-center gap-2 text-sm text-[var(--color-muted)]">
-						<Icon icon="tabler:clock-check" class="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-						<span>Příjezd od <strong class="text-[var(--color-foreground)]">{cabin.checkIn}</strong></span>
+						<Icon
+							icon="tabler:clock-check"
+							class="h-4 w-4 shrink-0 text-[var(--color-accent)]"
+							aria-hidden="true"
+						/>
+						<span
+							>Příjezd od <strong class="text-[var(--color-foreground)]">{cabin.checkIn}</strong
+							></span
+						>
 					</div>
 					<div class="flex items-center gap-2 text-sm text-[var(--color-muted)]">
-						<Icon icon="tabler:clock-x" class="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-						<span>Odjezd do <strong class="text-[var(--color-foreground)]">{cabin.checkOut}</strong></span>
+						<Icon
+							icon="tabler:clock-x"
+							class="h-4 w-4 shrink-0 text-[var(--color-accent)]"
+							aria-hidden="true"
+						/>
+						<span
+							>Odjezd do <strong class="text-[var(--color-foreground)]">{cabin.checkOut}</strong
+							></span
+						>
 					</div>
 				</div>
 
@@ -122,7 +123,7 @@
 							<li class="flex items-start gap-2 text-sm text-[var(--color-muted)]">
 								<Icon
 									icon="tabler:check"
-									class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+									class="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]"
 									aria-hidden="true"
 								/>
 								{note}
@@ -132,7 +133,9 @@
 				{/if}
 
 				<!-- Obsazený termín -->
-				<p class="mt-6 border-l-2 border-[var(--color-accent)] pl-4 text-sm leading-relaxed text-[var(--color-muted)]">
+				<p
+					class="mt-6 border-l-2 border-[var(--color-accent)] pl-4 text-sm leading-relaxed text-[var(--color-muted)]"
+				>
 					Pokud je vámi zvolený termín obsazený, prosím zavolejte nám — rádi vymyslíme jiný termín
 					nebo jinou chatku v areálu k vaší spokojenosti.
 				</p>
@@ -140,16 +143,14 @@
 
 			<!-- Formulář -->
 			<div>
-				<h2 class="text-sm font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
-					Rezervační dotaz
-				</h2>
+				<h3 class="label text-[var(--color-muted)]">Rezervační dotaz</h3>
 
 				{#if formState === 'success'}
 					<div
-						class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-accent)]/30 bg-[var(--color-surface)] p-6"
+						class="mt-5 rounded-[var(--radius-md)] border border-[var(--color-accent)]/30 bg-[var(--color-background)] p-6"
 					>
 						<div class="flex items-center gap-3">
-							<Icon icon="tabler:circle-check" class="h-6 w-6 text-primary" />
+							<Icon icon="tabler:circle-check" class="h-6 w-6 text-[var(--color-accent)]" />
 							<p class="text-base font-medium text-[var(--color-foreground)]">
 								Děkujeme! Dotaz jsme přijali.
 							</p>
@@ -159,7 +160,7 @@
 						</p>
 					</div>
 				{:else}
-					<form onsubmit={handleSubmit} class="mt-6 space-y-5">
+					<form onsubmit={handleSubmit} class="mt-5 space-y-5">
 						<!-- Jméno -->
 						<div>
 							<label for="name" class="block text-sm font-medium text-[var(--color-foreground)]"
@@ -219,7 +220,7 @@
 							</div>
 						</div>
 
-						<!-- Termín -->
+						<!-- Termín (synchronizovaný s kalendářem) -->
 						<div class="grid gap-5 sm:grid-cols-2">
 							<div>
 								<label
@@ -230,7 +231,8 @@
 									id="dateFrom"
 									name="dateFrom"
 									type="date"
-									value={values.dateFrom ?? ''}
+									value={selectedFrom ?? ''}
+									oninput={(e) => (selectedFrom = e.currentTarget.value || null)}
 									required
 									class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors focus:border-[var(--color-accent)] focus:outline-none"
 								/>
@@ -248,7 +250,8 @@
 									id="dateTo"
 									name="dateTo"
 									type="date"
-									value={values.dateTo ?? ''}
+									value={selectedTo ?? ''}
+									oninput={(e) => (selectedTo = e.currentTarget.value || null)}
 									required
 									class="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors focus:border-[var(--color-accent)] focus:outline-none"
 								/>
@@ -287,12 +290,14 @@
 								name="message"
 								rows="4"
 								class="mt-2 w-full resize-y rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
-								placeholder="Máme psa, přijíždíme v pátek odpoledne..."></textarea>
+								placeholder="Máme psa, přijíždíme v pátek odpoledne..."
+								>{values.message ?? ''}</textarea
+							>
 						</div>
 
 						{#if formState === 'error'}
 							<p
-								class="rounded-[var(--radius-sm)] bg-[var(--color-surface)] px-4 py-3 text-sm text-[var(--color-accent)]"
+								class="rounded-[var(--radius-sm)] bg-[var(--color-background)] px-4 py-3 text-sm text-[var(--color-accent)]"
 								role="alert"
 							>
 								Něco se nepovedlo. Zkuste to prosím znovu, nebo nám napište e-mail.
@@ -302,7 +307,7 @@
 						<button
 							type="submit"
 							disabled={formState === 'submitting'}
-							class="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-primary-foreground transition-colors hover:bg-[var(--color-accent-hover)] hover:shadow-[var(--shadow-hover)] disabled:opacity-60 sm:w-auto"
+							class="inline-flex h-12 w-full items-center justify-center rounded-full bg-[var(--color-accent)] px-8 text-base font-medium text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)] hover:shadow-[var(--shadow-hover)] disabled:opacity-60 sm:w-auto"
 						>
 							{formState === 'submitting' ? 'Odesíláme…' : 'Odeslat rezervační dotaz'}
 						</button>
