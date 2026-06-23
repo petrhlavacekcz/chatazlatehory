@@ -14,19 +14,14 @@ export const inquirySchema = z.object({
 	phone: z.string().optional(),
 	dateFrom: z.string().min(1, 'Vyberte datum příjezdu'),
 	dateTo: z.string().min(1, 'Vyberte datum odjezdu'),
-	guests: z
-		.string()
-		.optional()
-		.refine((v) => !v || /^\d+$/.test(v), 'Zadejte číslo')
-		.transform((v) => (v ? Number(v) : undefined))
-		.pipe(
-			z
-				.number()
-				.int()
-				.min(1)
-				.max(cabin.capacity.guests, `Maximálně ${cabin.capacity.guests} hostů`)
-				.optional()
-		),
+	guests: z.preprocess(
+		(v) => {
+			if (v === '' || v === null || v === undefined) return undefined;
+			const n = Number(v);
+			return isNaN(n) ? undefined : n;
+		},
+		z.number().int().min(1).max(cabin.capacity.guests, `Maximálně ${cabin.capacity.guests} hostů`).optional()
+	),
 	message: z.string().max(2000).optional()
 });
 

@@ -51,11 +51,11 @@ export const trips: Trip[] = [
 		href: 'https://www.ceskehory.cz/jeseniky/cyklotrasy.html'
 	},
 	{
-		id: 'muzeum-zlata',
+		id: 'mestske-muzeum',
 		icon: 'tabler:building-monument',
-		title: 'Muzeum zlata',
+		title: 'Městské muzeum',
 		description: 'Expozice o hornické historii Zlatých Hor s možností prohlídky starých štol.',
 		distance: '2 km',
-		href: 'https://www.zlatehory.cz/turistika/kultura-a-pamatky'
+		href: 'https://zlatehory.cz/mestske-muzeum/os-13876'
 	}
 ];
