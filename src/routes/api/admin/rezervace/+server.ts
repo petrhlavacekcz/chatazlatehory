@@ -1,11 +1,11 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { db } from '$lib/server/db';
-import { ADMIN_PASSWORD } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 function checkAuth(request: Request): boolean {
 	const auth = request.headers.get('authorization') ?? '';
-	return auth === `Bearer ${ADMIN_PASSWORD}`;
+	return auth === `Bearer ${env.ADMIN_PASSWORD}`;
 }
 
 export const GET: RequestHandler = async ({ request, url }) => {
