@@ -32,15 +32,12 @@
 				href="/galerie/"
 				class="group relative isolate block overflow-hidden rounded-[var(--radius-lg)]"
 			>
-				<picture>
-					<source type="image/avif" srcset={galleryPreview[0].src} />
-					<img
-						src={galleryPreview[0].src.replace('.avif', '.webp')}
-						alt={galleryPreview[0].alt}
-						loading="eager"
-						class="block aspect-[3/2] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
-					/>
-				</picture>
+				<img
+					src={galleryPreview[0].src}
+					alt={galleryPreview[0].alt}
+					loading="eager"
+					class="block aspect-[3/2] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
+				/>
 			</a>
 			<div class="grid grid-cols-2 gap-4">
 				{#each galleryPreview.slice(1, 5) as image (image.src)}
@@ -48,15 +45,12 @@
 						href="/galerie/"
 						class="group relative isolate block overflow-hidden rounded-[var(--radius-lg)]"
 					>
-						<picture>
-							<source type="image/avif" srcset={image.src} />
-							<img
-								src={image.src.replace('.avif', '.webp')}
-								alt={image.alt}
-								loading="lazy"
-								class="block aspect-[3/2] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
-							/>
-						</picture>
+						<img
+							src={image.src}
+							alt={image.alt}
+							loading="lazy"
+							class="block aspect-[3/2] w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
+						/>
 					</a>
 				{/each}
 			</div>

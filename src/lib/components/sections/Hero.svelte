@@ -11,15 +11,12 @@
 <section
 	class="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[var(--color-dark-deep)]"
 >
-	<picture>
-		<source type="image/avif" srcset={heroImage.src} />
-		<img
-			src={heroImage.src.replace('.avif', '.webp')}
-			alt={heroImage.alt}
-			class="absolute inset-0 h-full w-full object-cover"
-			fetchpriority="high"
-		/>
-	</picture>
+	<img
+		src={heroImage.src}
+		alt={heroImage.alt}
+		class="absolute inset-0 h-full w-full object-cover"
+		fetchpriority="high"
+	/>
 	<!-- Overlay pro čitelnost:
 	     1. Top gradient (shora) — zajišťuje čitelnost průhledného headeru nahoře
 	     2. Bottom gradient (zdola) — zajišťuje čitelnost headline dole

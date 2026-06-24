@@ -23,7 +23,7 @@
 		name: cabin.name,
 		description: cabin.about[0],
 		url: canonicalUrl,
-		image: `${origin}/img/gallery/1.avif`,
+		image: `${origin}/img/gallery/1.webp`,
 		telephone: cabin.manager.phone,
 		address: {
 			'@type': 'PostalAddress',
@@ -48,13 +48,13 @@
 	<meta property="og:title" content={`${cabin.name} · ${cabin.tagline}`} />
 	<meta property="og:locale" content="cs_CZ" />
 	<meta property="og:url" content={canonicalUrl} />
-	<meta property="og:image" content={`${origin}/img/gallery/1.avif`} />
+	<meta property="og:image" content={`${origin}/img/gallery/1.webp`} />
 	<meta property="og:image:alt" content={cabin.tagline} />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={`${cabin.name} · ${cabin.tagline}`} />
-	<meta name="twitter:image" content={`${origin}/img/gallery/1.avif`} />
+	<meta name="twitter:image" content={`${origin}/img/gallery/1.webp`} />
 
 	<!-- schema.org structured data — LodgingBusiness -->
 	<!-- prettier-ignore -->

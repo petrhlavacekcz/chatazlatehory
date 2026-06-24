@@ -96,15 +96,14 @@
 					class="group block w-full overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-surface)] shadow-[var(--shadow-soft)]"
 					aria-label={`Zvětšit: ${image.alt}`}
 				>
-					<picture>
-						<source type="image/avif" srcset={image.src} />
-						<img
-							src={image.src.replace('.avif', '.webp')}
-							alt={image.alt}
-							loading="lazy"
-							class="w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
-						/>
-					</picture>
+					<img
+						src={image.src}
+						alt={image.alt}
+						width="2000"
+						height="1333"
+						loading="lazy"
+						class="w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-luxe)] group-hover:scale-105"
+					/>
 				</button>
 			{/each}
 		</div>
@@ -143,14 +142,11 @@
 		>
 			<Icon icon="tabler:x" class="h-6 w-6" />
 		</button>
-		<picture>
-			<source type="image/avif" srcset={lightboxSrc} />
-			<img
-				src={lightboxSrc.replace('.avif', '.webp')}
-				alt={lightboxAlt}
-				class="max-h-[90vh] max-w-full rounded-[var(--radius-md)] object-contain shadow-[var(--shadow-hover)]"
-			/>
-		</picture>
+		<img
+			src={lightboxSrc}
+			alt={lightboxAlt}
+			class="max-h-[90vh] max-w-full rounded-[var(--radius-md)] object-contain shadow-[var(--shadow-hover)]"
+		/>
 		<p
 			class="pointer-events-none absolute bottom-6 left-0 right-0 px-6 text-center font-sans text-sm text-[var(--color-dark-foreground)]/70"
 		>

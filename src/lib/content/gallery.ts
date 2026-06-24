@@ -1,6 +1,8 @@
 /**
  * Galerie fotek — typovaný seznam s kategoriemi.
- * Fotky ve static/img/gallery/ (AVIF, landscape, optimalizované z assets/Final/).
+ * Fotky ve static/img/gallery/ (WebP, landscape, optimalizované z assets/Final/).
+ * Pozn.: servírujeme WebP (univerzální podpora vč. Firefox/Edge); zdrojové .avif
+ * zůstávají na disku jako master pro `bun run webp`, ale nereferencují se.
  *
  * Kategorie (sjednocené dle požadavku):
  * - `exterior` — exteriér chaty + areál Bohemaland + okolní krajina (vše venku)
@@ -21,7 +23,7 @@ export interface GalleryImage {
 	category: 'exterior' | 'interior';
 }
 
-const img = (name: string) => `/img/gallery/${name}.avif`;
+const img = (name: string) => `/img/gallery/${name}.webp`;
 
 export const galleryImages: GalleryImage[] = [
 	// ── Exteriér chaty (venku — budova, zahrada, krajina) ──────
@@ -95,7 +97,7 @@ export const galleryImages: GalleryImage[] = [
 	{ src: img('47'), alt: 'Pohled do přírody od chaty', category: 'exterior' }
 ];
 
-/** Hlavní hero fotka — exteriér chaty v podvečerním světle (1.avif, dramatický). */
+/** Hlavní hero fotka — exteriér chaty v podvečerním světle (1.webp, dramatický). */
 export const heroImage = galleryImages[0];
 
 /** Preview pro homepage galerii — mix exterior/interior napříč sadou. */
