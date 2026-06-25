@@ -35,7 +35,7 @@
 						href="/o-chate/"
 						class="group inline-flex items-center gap-3 font-sans text-sm font-medium uppercase tracking-[0.15em] text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent)]"
 					>
-						Více o chatě
+						Co vás čeká uvnitř
 						<span
 							class="inline-block h-px w-10 bg-current transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] group-hover:w-16"
 						></span>

@@ -14,7 +14,7 @@
 	<title>O chatě · {cabin.name}</title>
 	<meta
 		name="description"
-		content={`Podrobnosti o chatě ${cabin.name} v areálu ${cabin.area} — kapacita, dispozice, vybavení, areál a majitel.`}
+		content={`Vše o chatě ${cabin.name} v areálu ${cabin.area}: kapacita až ${cabin.capacity.guests} hostů, dispozice, vybavení i okolí. Dřevěná horská chata k pronájmu ve Zlatých Horách.`}
 	/>
 </svelte:head>
 
@@ -122,7 +122,7 @@
 				href="/#rezervace"
 				class="inline-flex h-12 items-center justify-center rounded-full bg-[var(--color-accent)] px-8 font-sans text-sm font-medium tracking-wide text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)] hover:shadow-[var(--shadow-hover)]"
 			>
-				Rezervovat termín
+				Nezávazně poptat termín
 			</a>
 		</div>
 	</div>

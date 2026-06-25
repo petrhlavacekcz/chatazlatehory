@@ -14,7 +14,7 @@
 	<title>{cabin.name} · Klid, komfort a příroda v Jeseníkách</title>
 	<meta
 		name="description"
-		content={`Pronájem dřevěné horské chaty v areálu ${cabin.area} ve Zlatých Horách. Klid, komfort a příroda Jeseníků — kapacita ${cabin.capacity.guests} hostů, krb, zahrada, sprchový kout.`}
+		content={`Pronájem celé dřevěné horské chaty ve Zlatých Horách (areál ${cabin.area}). Až ${cabin.capacity.guests} hostů, krb, zahrada s grilem a soukromí v lesích Jeseníků. Nezávazně poptejte termín.`}
 	/>
 </svelte:head>
 

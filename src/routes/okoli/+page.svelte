@@ -24,8 +24,8 @@
 		<p
 			class="mt-6 max-w-2xl font-sans text-base leading-relaxed text-[var(--color-muted)] md:text-lg"
 		>
-			{cabin.location.city} jsou výchozím bodem pro objevování Jeseníků. Od chaty vás dělí kilometry od
-			turistických tras, lyžařských areálů i historických památek.
+			{cabin.location.city} jsou ideálním výchozím bodem pro objevování Jeseníků. Turistické trasy, lyžařské
+			areály i historické památky máte na dosah — většinu jen pár kilometrů od chaty.
 		</p>
 	</div>
 </section>
@@ -63,7 +63,7 @@
 						<span
 							class="mt-4 inline-flex items-center gap-1 font-sans text-sm text-[var(--color-accent)] transition-transform duration-[var(--duration-base)] group-hover:translate-x-1"
 						>
-							Dozvědět se více
+							Více o místě
 							<Icon icon="tabler:arrow-up-right" class="h-4 w-4" />
 						</span>
 					</div>

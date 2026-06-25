@@ -52,48 +52,48 @@ export const galleryImages: GalleryImage[] = [
 	// ── Interiér (vnitřní prostory — bez koupelny) ────────────
 	// POZNÁMKA: Fotky 10-13 jsou koupelna/toaleta — VYŘAZENO.
 	// Interiérové fotky začínají od 14. Popisky jsou odhadnuté — uprav ručně.
-	{ src: img('14'), alt: 'Interiér chaty — útulný prostor s teplým světlem', category: 'interior' },
-	{ src: img('16'), alt: 'Interiér chaty — obytný prostor', category: 'interior' },
-	{ src: img('17'), alt: 'Interiér chaty', category: 'interior' },
-	{ src: img('18'), alt: 'Interiér chaty', category: 'interior' },
-	{ src: img('19'), alt: 'Interiér chaty', category: 'interior' },
+	{ src: img('14'), alt: 'Útulný interiér chaty prosvětlený teplým světlem', category: 'interior' },
+	{ src: img('16'), alt: 'Obytný prostor chaty v teplých dřevěných tónech', category: 'interior' },
+	{ src: img('17'), alt: 'Posezení v interiéru chaty', category: 'interior' },
+	{ src: img('18'), alt: 'Společenský prostor chaty s dřevěnými prvky', category: 'interior' },
+	{ src: img('19'), alt: 'Klidné zákoutí interiéru chaty', category: 'interior' },
 
 	// ── Exteriér — areál a krajina (pokračování) ──────────────
 	{ src: img('20'), alt: 'Zahrada chaty s venkovním posezením', category: 'exterior' },
-	{ src: img('21'), alt: 'Areál chaty', category: 'exterior' },
-	{ src: img('22'), alt: 'Okolí chaty', category: 'exterior' },
+	{ src: img('21'), alt: 'Areál Bohemaland kolem chaty', category: 'exterior' },
+	{ src: img('22'), alt: 'Travnaté okolí chaty s lesem v pozadí', category: 'exterior' },
 	{ src: img('23'), alt: 'Exteriér — areál Bohemaland', category: 'exterior' },
-	{ src: img('24'), alt: 'Pohled na areál chaty', category: 'exterior' },
+	{ src: img('24'), alt: 'Pohled na areál chaty a okolní zeleň', category: 'exterior' },
 	{ src: img('25'), alt: 'Parkoviště a přístup k chatě', category: 'exterior' },
-	{ src: img('26'), alt: 'Okolí chaty', category: 'exterior' },
-	{ src: img('27'), alt: 'Areál chaty', category: 'exterior' },
+	{ src: img('26'), alt: 'Příroda v sousedství chaty', category: 'exterior' },
+	{ src: img('27'), alt: 'Venkovní posezení v areálu chaty', category: 'exterior' },
 	{ src: img('28'), alt: 'Exteriér — krajina kolem chaty', category: 'exterior' },
 	{ src: img('29'), alt: 'Pohled do krajiny od chaty', category: 'exterior' },
 	{ src: img('30'), alt: 'Terasa chaty v letním večeru', category: 'exterior' },
 
 	// ── Interiér (pokračování) ────────────────────────────────
-	{ src: img('31'), alt: 'Interiér chaty', category: 'interior' },
-	{ src: img('32'), alt: 'Interiér chaty', category: 'interior' },
-	{ src: img('33'), alt: 'Interiér chaty', category: 'interior' },
-	{ src: img('34'), alt: 'Interiér chaty', category: 'interior' },
+	{ src: img('31'), alt: 'Obytný prostor chaty s posezením', category: 'interior' },
+	{ src: img('32'), alt: 'Interiér chaty prosvětlený denním světlem', category: 'interior' },
+	{ src: img('33'), alt: 'Útulné zákoutí interiéru chaty', category: 'interior' },
+	{ src: img('34'), alt: 'Interiér chaty v teplých tónech', category: 'interior' },
 
 	// ── Krajina a příroda (exterior) ──────────────────────────
 	{ src: img('35'), alt: 'Lesní cesta vedoucí k chatě', category: 'exterior' },
-	{ src: img('36'), alt: 'Příroda v okolí chaty', category: 'exterior' },
+	{ src: img('36'), alt: 'Lesnatá příroda v okolí chaty', category: 'exterior' },
 	{ src: img('37'), alt: 'Krajina Jeseníků', category: 'exterior' },
-	{ src: img('38'), alt: 'Okolní příroda', category: 'exterior' },
-	{ src: img('39'), alt: 'Výhled do krajiny', category: 'exterior' },
+	{ src: img('38'), alt: 'Okolní lesy Jeseníků', category: 'exterior' },
+	{ src: img('39'), alt: 'Výhled do krajiny Jeseníků', category: 'exterior' },
 	{ src: img('40'), alt: 'Výhled na vrcholky Jeseníků od chaty', category: 'exterior' },
-	{ src: img('41'), alt: 'Krajina v okolí', category: 'exterior' },
+	{ src: img('41'), alt: 'Kopcovitá krajina v okolí Zlatých Hor', category: 'exterior' },
 	{ src: img('42'), alt: 'Příroda Jeseníků', category: 'exterior' },
 
 	// ── Interiér (pokračování) ────────────────────────────────
-	{ src: img('43'), alt: 'Interiér chaty', category: 'interior' },
-	{ src: img('44'), alt: 'Interiér chaty', category: 'interior' },
+	{ src: img('43'), alt: 'Interiér chaty v teplém světle', category: 'interior' },
+	{ src: img('44'), alt: 'Detail obytného prostoru chaty', category: 'interior' },
 
 	// ── Krajina (exterior) ────────────────────────────────────
 	{ src: img('45'), alt: 'Zimní krajina Zlatých Hor, zasněžené louky', category: 'exterior' },
-	{ src: img('46'), alt: 'Krajina v okolí chaty', category: 'exterior' },
+	{ src: img('46'), alt: 'Krajina a kopce v okolí chaty', category: 'exterior' },
 	{ src: img('47'), alt: 'Pohled do přírody od chaty', category: 'exterior' }
 ];
 

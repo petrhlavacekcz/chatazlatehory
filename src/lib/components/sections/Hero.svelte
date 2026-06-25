@@ -47,7 +47,7 @@
 			<p
 				class="mt-8 max-w-md font-sans text-base leading-relaxed text-[var(--color-dark-foreground)]/70 md:text-lg"
 			>
-				Dřevěná horská chata v srdci Jeseníků. Místo, kam se na chvíli zastaví čas.
+				Dřevěná horská chata v srdci Jeseníků. Místo, kde se na chvíli zastaví čas.
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center gap-4">
@@ -55,13 +55,13 @@
 					href="/#rezervace"
 					class="inline-flex h-12 items-center justify-center rounded-full bg-[var(--color-accent)] px-8 font-sans text-sm font-medium tracking-wide text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)]"
 				>
-					Rezervovat termín
+					Nezávazně poptat termín
 				</a>
 				<a
 					href="/galerie/"
 					class="inline-flex h-12 items-center justify-center rounded-full border border-[var(--color-dark-foreground)]/30 px-8 font-sans text-sm font-medium tracking-wide text-[var(--color-dark-foreground)] backdrop-blur-sm transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:border-[var(--color-dark-foreground)]/70 hover:bg-[var(--color-dark-foreground)]/10"
 				>
-					Galerie
+					Prohlédnout galerii
 				</a>
 			</div>
 		</div>

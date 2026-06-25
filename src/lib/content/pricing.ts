@@ -8,16 +8,16 @@ export const pricing: PriceTier[] = [
 	{
 		id: 'per-night',
 		label: 'Cena za noc',
-		period: 'celoroční sazba',
+		period: 'za celou chatu, ne za osobu',
 		amount: 2500,
-		note: 'Při delší obsazenosti individuální sleva po dohodě',
+		note: 'Při delším pobytu individuální sleva po dohodě',
 		highlight: true
 	}
 ];
 
 export const pricingNotes = [
-	'Cena zahrnuje úklid, ložní prádlo, ručníky a energie.',
-	'Vratná kauce 4 000 Kč při předání chaty v pořádku.',
-	'Zvířata po domluvě, příplatek 300 Kč/noc.',
-	'Příplatek za správu a rezervaci je zahrnut v ceně.'
+	'V ceně je úklid, ložní prádlo, ručníky i energie.',
+	'Vratná kauce 4 000 Kč — vrací se při předání chaty v pořádku.',
+	'Mazlíčci po domluvě, příplatek 300 Kč za noc.',
+	'Žádné skryté poplatky — uvedená cena je konečná.'
 ];

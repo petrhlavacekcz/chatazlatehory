@@ -123,7 +123,7 @@
 				href="/#rezervace"
 				class="rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-sans text-sm font-medium text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)]"
 			>
-				Rezervovat
+				Poptat termín
 			</a>
 		</div>
 
@@ -205,7 +205,7 @@
 					onclick={() => (mobileOpen = false)}
 					class="flex h-12 w-full items-center justify-center rounded-full bg-[var(--color-accent)] font-sans text-sm font-medium tracking-wide text-[var(--color-accent-foreground)] transition-all duration-[var(--duration-base)] ease-[var(--ease-luxe)] hover:bg-[var(--color-accent-hover)]"
 				>
-					Rezervovat termín
+					Nezávazně poptat termín
 				</a>
 
 				<!-- Kontakt info -->

@@ -47,7 +47,10 @@
 
 <svelte:head>
 	<title>Kontakt · {cabin.name}</title>
-	<meta name="description" content={`Kontaktujte majitele chaty ${cabin.name}.`} />
+	<meta
+		name="description"
+		content={`Kontakt na majitele chaty ${cabin.name} — telefon, e-mail a poloha v areálu ${cabin.area}, Zlaté Hory. Rádi poradíme s termínem i pobytem.`}
+	/>
 </svelte:head>
 
 <section class="border-b border-[var(--color-border)] bg-[var(--color-background)]">
@@ -144,7 +147,7 @@
 								Zpráva byla odeslána.
 							</p>
 						</div>
-						<p class="mt-2 text-sm text-[var(--color-muted)]">Ozveme se vám co nejdříve.</p>
+						<p class="mt-2 text-sm text-[var(--color-muted)]">Ozveme se vám obvykle do 24 hodin.</p>
 					</div>
 				{:else}
 					<form onsubmit={handleSubmit} class="mt-6 space-y-5">
@@ -209,7 +212,7 @@
 								rows="5"
 								required
 								class="mt-2 w-full resize-y rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-[var(--color-foreground)] transition-colors placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:outline-none"
-								placeholder="Jak vám můžeme pomoci?"
+								placeholder="Na co se chcete zeptat?"
 								aria-invalid={!!hasError('message')}></textarea>
 							{#if hasError('message')}
 								<p class="mt-1 text-sm text-[var(--color-accent)]" role="alert">
@@ -234,6 +237,10 @@
 						>
 							{formState === 'submitting' ? 'Odesíláme…' : 'Odeslat zprávu'}
 						</button>
+
+						<p class="text-xs text-[var(--color-muted)]">
+							Odpovídáme obvykle do 24 hodin · žádný spam
+						</p>
 					</form>
 				{/if}
 			</div>

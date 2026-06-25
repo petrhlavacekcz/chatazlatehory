@@ -13,12 +13,12 @@
 		{
 			icon: 'tabler:home-heart',
 			title: 'Komfort a teplo',
-			text: 'Útulné zázemí po celý den — sprcha, teplo, ložní prádlo v ceně.'
+			text: 'Teplá chata a pohodlí po celý den. Prádlo i ručníky v ceně.'
 		},
 		{
 			icon: 'tabler:trees',
 			title: 'Soukromí v přírodě',
-			text: 'Zahrada, les, žádní sousedé v dohledu.'
+			text: 'Vlastní zahrada, les za plotem, žádní sousedé v dohledu.'
 		}
 	];
 </script>
@@ -45,7 +45,7 @@
 				class="mt-6 font-serif font-light leading-[1.05] text-[var(--color-dark-foreground)]"
 				style="font-size: clamp(2.25rem, 5vw, 3.5rem);"
 			>
-				Více než jen ubytování
+				Tady zpomalíte
 			</h2>
 		</div>
 

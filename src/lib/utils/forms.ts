@@ -20,7 +20,12 @@ export const inquirySchema = z.object({
 			const n = Number(v);
 			return isNaN(n) ? undefined : n;
 		},
-		z.number().int().min(1).max(cabin.capacity.guests, `Maximálně ${cabin.capacity.guests} hostů`).optional()
+		z
+			.number()
+			.int()
+			.min(1)
+			.max(cabin.capacity.guests, `Maximálně ${cabin.capacity.guests} hostů`)
+			.optional()
 	),
 	message: z.string().max(2000).optional()
 });

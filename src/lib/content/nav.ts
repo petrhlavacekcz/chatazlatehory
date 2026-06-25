@@ -18,6 +18,6 @@ export const footerNavItems: NavItem[] = [
 	{ href: '/o-chate/', label: 'O chatě' },
 	{ href: '/galerie/', label: 'Galerie' },
 	{ href: '/okoli/', label: 'Okolí' },
-	{ href: '/#rezervace', label: 'Ceník' },
+	{ href: '/#rezervace', label: 'Ceník a rezervace' },
 	{ href: '/kontakt/', label: 'Kontakt' }
 ];

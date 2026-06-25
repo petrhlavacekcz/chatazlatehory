@@ -12,7 +12,7 @@
 				<p
 					class="max-w-xs font-sans text-sm leading-relaxed text-[var(--color-dark-foreground)]/55"
 				>
-					{cabin.location.city}, {cabin.location.region}. {cabin.area}.
+					Dřevěná horská chata k pronájmu ve Zlatých Horách, v srdci Jeseníků. Areál {cabin.area}.
 				</p>
 			</div>
 

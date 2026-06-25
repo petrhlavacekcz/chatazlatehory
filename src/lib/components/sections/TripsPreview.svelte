@@ -49,7 +49,7 @@
 					<span
 						class="mt-6 inline-flex items-center gap-2 font-sans text-sm text-[var(--color-accent)] transition-transform duration-[var(--duration-base)] group-hover:translate-x-1"
 					>
-						Dozvědět se více
+						Více o místě
 						<Icon icon="tabler:arrow-up-right" class="h-4 w-4" />
 					</span>
 				</a>

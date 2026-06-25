@@ -327,6 +327,10 @@
 						>
 							{formState === 'submitting' ? 'Odesíláme…' : 'Odeslat rezervační dotaz'}
 						</button>
+
+						<p class="text-xs text-[var(--color-muted)]">
+							Nezávazné · odpovídáme obvykle do 24 hodin · žádný spam
+						</p>
 					</form>
 				{/if}
 			</div>

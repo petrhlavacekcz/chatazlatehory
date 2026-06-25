@@ -10,7 +10,7 @@ export const trips: Trip[] = [
 		icon: 'tabler:mountain',
 		title: 'Biskupská kupa',
 		description:
-			'Nejvyšší vrchol Zlatohorské vrchoviny s rozhlednou a výhledem na Jeseníky i Kralický Sněžník.',
+			'Nejvyšší vrch Zlatohorské vrchoviny. Z rozhledny dohlédnete na Jeseníky i Kralický Sněžník.',
 		distance: '6 km',
 		href: 'https://cs.wikipedia.org/wiki/Biskupsk%C3%A1_kupa'
 	},
@@ -19,7 +19,7 @@ export const trips: Trip[] = [
 		icon: 'tabler:trees',
 		title: 'Rejvíz',
 		description:
-			'Nejvýše položená obec v Jeseníkách a rašeliniště — národní přírodní rezervace s dřevěným povalovým chodníkem.',
+			'Nejvýše položená obec Jeseníků. Po dřevěném chodníku projdete tajemné rašeliniště národní rezervace.',
 		distance: '12 km',
 		href: 'https://cs.wikipedia.org/wiki/Rejv%C3%ADz'
 	},
@@ -28,7 +28,7 @@ export const trips: Trip[] = [
 		icon: 'tabler:ski-jumping',
 		title: 'Ski areál Příčná',
 		description:
-			'Zimní lyžařský areál přímo ve Zlatých Horách — sjezdovky pro rodiny i mírně pokročilé.',
+			'Lyžování přímo ve Zlatých Horách, pár minut od chaty. Sjezdovky pro rodiny i mírně pokročilé.',
 		distance: '3 km',
 		href: 'https://www.ceskehory.cz/ski-areal/zlate-hory-pricna.html'
 	},
@@ -37,7 +37,7 @@ export const trips: Trip[] = [
 		icon: 'tabler:ski-jumping',
 		title: 'Červenohorské sedlo',
 		description:
-			'Jeden z nejznámějších lyžařských areálů Jeseníků s širokými sjezdovkami a běžeckými tratěmi.',
+			'Jeden z nejznámějších areálů Jeseníků. Široké sjezdovky a upravené běžecké tratě.',
 		distance: '28 km',
 		href: 'https://cs.wikipedia.org/wiki/%C4%8Cervenohorsk%C3%A9_sedlo'
 	},
@@ -46,7 +46,7 @@ export const trips: Trip[] = [
 		icon: 'tabler:bike',
 		title: 'Cyklotrasy Jeseníky',
 		description:
-			'Stovky kilometrů značených cyklotras — od rodinných údolních linek po náročné vrcholové výstupy.',
+			'Stovky kilometrů značených tras — od poklidných údolí po náročné výjezdy do kopců.',
 		distance: 'od 0 km',
 		href: 'https://www.ceskehory.cz/jeseniky/cyklotrasy.html'
 	},
@@ -54,7 +54,7 @@ export const trips: Trip[] = [
 		id: 'mestske-muzeum',
 		icon: 'tabler:building-monument',
 		title: 'Městské muzeum',
-		description: 'Expozice o hornické historii Zlatých Hor s možností prohlídky starých štol.',
+		description: 'Hornická historie Zlatých Hor a prohlídka starých zlatých štol.',
 		distance: '2 km',
 		href: 'https://zlatehory.cz/mestske-muzeum/os-13876'
 	}

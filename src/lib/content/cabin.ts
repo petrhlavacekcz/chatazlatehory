@@ -26,21 +26,21 @@ export const cabin = {
 		name: 'Tomáš Pavela',
 		phone: '+420 777 340 956',
 		email: 'tom.pavela@seznam.cz',
-		bio: 'Chata je naším rodinným útočištěm už léta. Postupně jsme ji upravili tak, aby si každý host odpočinul stejně jako my — ať už přijede na víkend nebo na celý týden. Rád poradím s výlety i s tím, jak chatu vytěžit naplno.'
+		bio: 'Chata je naším rodinným útočištěm už léta. Postupně jsme ji upravili tak, aby si tu každý odpočinul stejně jako my — ať přijede na víkend, nebo na celý týden. Rád vám poradím s výlety i s tím, kde v okolí najdete to nejhezčí.'
 	},
 	about: [
-		'Dřevěná horská chata v srdci Zlatých Hor, obklopená lesy Jeseníků. Místo, kam se na chvíli zastaví čas — ráno vás probudí světlo přes koruny stromů, večer praská oheň v krbu.',
-		'Po večerech tady nemusíte nic dělat. Chata je postavená pro lidi, kteří chtějí odpočívat — bez programu, bez hluku, bez spěchu.'
+		'Dřevěná horská chata v srdci Zlatých Hor, obklopená lesy Jeseníků. Místo, kde se na chvíli zastaví čas — ráno vás probudí světlo mezi korunami stromů, večer praská oheň v krbu.',
+		'Tady nemusíte nic. Chata je postavená pro lidi, kteří si přijeli odpočinout — bez programu, bez hluku, bez spěchu.'
 	],
 	/**
 	 * Rozšířený popis pro stránku O chatě. Na homepage se ukazuje kratší
 	 * teaser (`about`), zde je plný příběh chaty a areálu.
 	 */
 	aboutExtended: [
-		'Dřevěná horská chata v srdci Zlatých Hor, obklopená lesy Jeseníků. Místo, kam se na chvíli zastaví čas — ráno vás probudí světlo přes koruny stromů, večer praská oheň v krbu.',
-		'Prostor chaty je prostý a v teplých tónech. Obývací místnost s krbem je středobodem večerů, otevřená kuchyně pozve k společnému vaření a z terasy se dá sledovat, jak nad lesy padá tma.',
-		'Chata stojí v areálu Bohemaland — soukromém koutu na okraji města, kam nedosáhne ruch, ale kam dojedete autem až k ke dveřím. Kolem je zahrada s grilem a posezením, vlastní parkoviště a hned za plotem les a turistické trasy.',
-		'Není tu potřeba program. Ideální pro rodiny, party přátel i páry — přijeďte odpočívat bez spěchu a bez hluku. A když přece jen vyrazíte, Jeseníky mají co nabídnout: od sjezdovek Červenohorského sedla a areálu Příčná po turistické stezky s výhledy na Jeseníky.'
+		'Dřevěná horská chata v srdci Zlatých Hor, obklopená lesy Jeseníků. Místo, kde se na chvíli zastaví čas — ráno vás probudí světlo mezi korunami stromů, večer praská oheň v krbu.',
+		'Interiér je prostý a laděný do teplých tónů. Obývací pokoj s krbem je středobodem večerů, otevřená kuchyně zve ke společnému vaření a z terasy se dá sledovat, jak nad lesy padá tma.',
+		'Chata stojí v areálu Bohemaland — soukromém koutu na okraji města, kam nedolehne ruch, ale kam dojedete autem až ke dveřím. Kolem je zahrada s grilem a posezením, vlastní parkoviště a hned za plotem les a turistické trasy.',
+		'Žádný program tu není potřeba. Ideální pro rodiny, partu přátel i páry — přijeďte si odpočinout bez spěchu a bez hluku. A když přece jen vyrazíte, Jeseníky mají co nabídnout: od sjezdovek na Příčné a Červenohorském sedle po turistické stezky s výhledy do kraje.'
 	],
 	highlights: [
 		{ value: '12', label: 'hostů' },
